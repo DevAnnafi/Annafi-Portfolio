@@ -3,6 +3,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import type { Variants } from "framer-motion";
+
 
 export default function PortfolioHero() {
   const [scrollY, setScrollY] = useState(0);
@@ -76,14 +78,21 @@ export default function PortfolioHero() {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const itemVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      },
     },
   };
+  
 
   const scrollToContent = () =>
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
