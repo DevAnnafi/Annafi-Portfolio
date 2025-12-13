@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Annafi Islam's Portfolio Website
 
-## Getting Started
+Welcome to my personal portfolio! This website is built with **React**, **Next.js**, and **Framer Motion**, showcasing my skills, projects, and experience in web development and interactive UI design.
 
-First, run the development server:
+---
 
-```bash
+## 🚀 About This Project
+
+This portfolio is designed to be **fast, modern, and interactive**. It leverages Next.js for **server-side rendering** and routing, React for dynamic components, and Framer Motion for **smooth animations and transitions**.
+
+**Key Features:**
+
+- Fully responsive design for all devices.
+- Animated page transitions with **Framer Motion**.
+- Dark/Light mode toggle.
+- Clean and minimalistic UI.
+- Easy-to-navigate sections: Home, About, Projects, Contact.
+
+---
+
+## 🛠 Tech Stack
+
+| Frontend        | Animation        | Styling          | Hosting          |
+|-----------------|-----------------|----------------|----------------|
+| React            | Framer Motion   | Tailwind CSS    | Vercel          |
+| Next.js          |                 | CSS Modules     |                 |
+| TypeScript       |                 |                 |                 |
+
+**Other tools and libraries:**
+
+- ESLint & Prettier for code quality
+- React Icons for scalable vector icons
+- Axios for API calls (if needed)
+
+---
+
+## ✨ Features & Animations
+
+This portfolio highlights **smooth animations** and **micro-interactions** to create an engaging user experience:
+
+- **Animated Hero Section:** Entrance animation using `motion.div`.
+- **Project Cards:** Scale-up and hover effects for projects.
+- **Navigation Menu:** Slide-in/out transitions.
+- **Page Transitions:** Seamless motion between pages.
+
+## 📂 Project Structure
+
+```
+portfolio/
+├─ public/             # Static assets
+├─ src/
+│  ├─ components/      # Reusable components
+│  ├─ pages/           # Next.js pages
+│  ├─ styles/          # Global and component styles
+│  └─ utils/           # Helpers & constants
+├─ .eslintrc.js        # ESLint config
+├─ tailwind.config.js  # Tailwind config
+└─ package.json
+
+```
+## ⚡ Getting Started
+
+# Clone the repository
+git clone https://github.com/DevAnnafi/portfolio.git
+
+# Install dependencies
+npm install
+# or
+yarn install
+
+# Run the development server
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Build for production
+npm run build
+npm start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit http://localhost:3000 to view your portfolio locally.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📈 Future Improvements
 
-## Learn More
+- Dark/Light theme toggle
 
-To learn more about Next.js, take a look at the following resources:
+- Blog section for tech articles
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Contact form with email notifications
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Performance optimization using Next.js Image component
 
-## Deploy on Vercel
+## 📬 Contact Me
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Email: islamannafi@gmail.com
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- LinkedIn: linkedin.com/in/annafi-islam
+
+- GitHub: github.com/DevAnnafi
+
