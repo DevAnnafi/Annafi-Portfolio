@@ -16,7 +16,7 @@ export default function PortfolioHero() {
       description: "An AI-powered personal productivity dashboard built with React, TypeScript, and Tailwind. Features modular widgets, task management, AI chat, and data visualization.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
       tags: ["React", "TypeScript", "Tailwind"],
-      link: "https://github.com/DevAnnafi/Echelon",
+      link: "https://github.com/annafi",
     },
     {
       title: "AI Job Market Analyzer",
@@ -24,7 +24,7 @@ export default function PortfolioHero() {
       description: "An AI-powered data science project that analyzes real-world job listings to uncover in-demand tech skills, salary trends, and career insights using Machine Learning and NLP.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
       tags: ["Python", "ML", "NLP"],
-      link: "https://github.com/DevAnnafi/AI-Job-Market-Analyzer",
+      link: "https://github.com/annafi",
     },
     {
       title: "Security Audit Scanner",
@@ -32,7 +32,7 @@ export default function PortfolioHero() {
       description: "A comprehensive Python-based security auditing tool designed to monitor system events, detect vulnerabilities, and generate detailed security reports.",
       image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop",
       tags: ["Python", "Security", "Automation"],
-      link: "https://github.com/DevAnnafi/Security-Audit-Logger-Vulnerability-Scanner",
+      link: "https://github.com/annafi",
     },
     {
       title: "Log Aggregation Pipeline",
@@ -40,7 +40,7 @@ export default function PortfolioHero() {
       description: "A lightweight Python-based log aggregation and detection pipeline that normalizes logs, applies Sigma-style detection rules, and forwards alerts to Elasticsearch.",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
       tags: ["Python", "Elasticsearch", "Kibana"],
-      link: "https://github.com/DevAnnafi/Log-Aggregation-Detection-Pipeline",
+      link: "https://github.com/annafi",
     },
     {
       title: "Risk Assessment Dashboard",
@@ -48,7 +48,7 @@ export default function PortfolioHero() {
       description: "A GRC project simulating risk identification, scoring, mitigation and visualization for a hypothetical organization.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
       tags: ["Python", "Data Viz", "Risk"],
-      link: "https://github.com/DevAnnafi/Risk-Assessment-Dashboard",
+      link: "https://github.com/annafi",
     },
   ];
 
@@ -99,9 +99,17 @@ export default function PortfolioHero() {
   const scrollToWork = () => {
     const workElement = document.getElementById('work');
     if (workElement) {
-      workElement.scrollIntoView({ behavior: "smooth"});
+      workElement.scrollIntoView({ behavior: 'smooth' });
     }
-  }
+  };
+
+  const scrollToContact = () => {
+    const contactElement = document.getElementById('contact');
+    if (contactElement) {
+      contactElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white font-sans antialiased">
       <motion.nav 
@@ -133,7 +141,11 @@ export default function PortfolioHero() {
           </motion.button>
           <motion.a 
             href="#work" 
-            className="text-sm tracking-wider text-gray-400 hover:text-white transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToWork();
+            }}
+            className="text-sm tracking-wider text-gray-400 hover:text-white transition-colors cursor-pointer"
             whileHover={{ y: -2 }}
           >
             WORK
@@ -149,7 +161,8 @@ export default function PortfolioHero() {
         
         <div>
           <motion.button 
-            className="px-6 py-2.5 border border-gray-600 rounded-md text-sm tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+            onClick={scrollToContact}
+            className="px-6 py-2.5 border border-gray-600 rounded-md text-sm tracking-wider hover:bg-white hover:text-black transition-all duration-300 cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -195,7 +208,7 @@ export default function PortfolioHero() {
             variants={itemVariants}
             className="text-gray-400 text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-12 font-light"
           >
-            Aspiring software developer on a mission to break into Software
+            Aspiring software developer on a mission to break into Software, QA,
             <br />
             and Cybersecurity. Passionate about creating clean, efficient code
             <br />
@@ -207,7 +220,7 @@ export default function PortfolioHero() {
             className="flex items-center justify-center gap-6"
           >
             <motion.button
-              onClick={scrollToWork}
+              onClick={scrollToContent}
               className="px-8 py-4 rounded-md font-medium flex items-center gap-2 transition-all duration-300 text-black"
               style={{ backgroundColor: '#FF6B35' }}
               whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 107, 53, 0.4)' }}
@@ -370,7 +383,7 @@ export default function PortfolioHero() {
         </div>
       </div>
 
-      <div id="work" className="py-20 px-6 relative" ref={workRef}>
+      <div id="work" className="py-20 px-6 relative bg-black" ref={workRef}>
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 text-center">
             <motion.p
@@ -449,6 +462,170 @@ export default function PortfolioHero() {
           </div>
         </div>
       </div>
+
+      <div id="contact" className="min-h-screen px-8 py-20 bg-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.p 
+                className="text-xs tracking-widest mb-4"
+                style={{ color: '#FF6B35' }}
+              >
+                GET IN TOUCH
+              </motion.p>
+
+              <motion.h2 
+                className="text-6xl md:text-7xl font-bold leading-tight mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+              >
+                Let's work
+                <br />
+                <span style={{ color: '#FF6B35' }}>together</span>
+              </motion.h2>
+
+              <motion.p 
+                className="text-gray-400 text-lg leading-relaxed mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
+                Interested in collaborating or have an opportunity?
+                <br />
+                I'd love to connect and discuss how we can work
+                <br />
+                together.
+              </motion.p>
+
+              <motion.div 
+                className="space-y-6 mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                <motion.a 
+                  href="mailto:hello@annafi.dev"
+                  className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group"
+                  whileHover={{ x: 10 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center group-hover:bg-orange-600 transition-colors">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                  </div>
+                  <span className="text-lg">islamannafi@gmail.com</span>
+                </motion.a>
+
+                <motion.div 
+                  className="flex items-center gap-4 text-gray-300"
+                  whileHover={{ x: 10 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <span className="text-lg">New York City</span>
+                </motion.div>
+              </motion.div>
+
+              <motion.div 
+                className="flex flex-wrap gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                {[
+                  { name: 'GitHub', url: 'https://github.com/Devannafi', icon: '↗' },
+                  { name: 'LinkedIn', url: 'https://linkedin.com/in/annafi-islam', icon: '↗' },
+                ].map((social) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 rounded-full border border-gray-700 hover:border-orange-600 text-gray-400 hover:text-white transition-all duration-300 flex items-center gap-2"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {social.name} <span>{social.icon}</span>
+                  </motion.a>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            <motion.form
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800"
+              action="https://formspree.io/f/myzroeyr"
+              method="POST"
+            >
+              <div className="mb-6">
+                <label className="block text-sm text-gray-300 mb-3">Your Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="John Smith"
+                  className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 transition-colors"
+                  required
+                />
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-sm text-gray-300 mb-3">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="john@example.com"
+                  className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 transition-colors"
+                  required
+                />
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-sm text-gray-300 mb-3">Details</label>
+                <textarea
+                name="message"
+                  placeholder="Tell me how you want to collaborate..."
+                  rows={6}
+                  className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 transition-colors resize-none"
+                  required
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                className="w-full py-4 rounded-lg font-bold text-black text-lg tracking-wider transition-all duration-300"
+                style={{ backgroundColor: '#FF6B35' }}
+                whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(255, 107, 53, 0.4)' }}
+                whileTap={{ scale: 0.98 }}
+              >
+                SEND MESSAGE
+              </motion.button>
+            </motion.form>
+          </div>
+        </div>
+      </div>
+
+      <footer className="border-t border-zinc-800 px-8 py-8 bg-black">
+        <div className="max-w-7xl mx-auto text-center text-gray-500 text-sm">
+          © 2025 Annafi. All rights reserved
+        </div>
+      </footer>
+
     </div>
   );
 }
