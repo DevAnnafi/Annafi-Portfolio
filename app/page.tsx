@@ -1,11 +1,56 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 export default function PortfolioHero() {
   const [scrollY, setScrollY] = useState(0);
+  const workRef = useRef(null);
+  const isInView = useInView(workRef, { once: true, margin: "-100px" });
+
+  const projects = [
+    {
+      title: "Echelon",
+      category: "Full Stack",
+      description: "An AI-powered personal productivity dashboard built with React, TypeScript, and Tailwind. Features modular widgets, task management, AI chat, and data visualization.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      tags: ["React", "TypeScript", "Tailwind"],
+      link: "https://github.com/DevAnnafi/Echelon",
+    },
+    {
+      title: "AI Job Market Analyzer",
+      category: "Data Science",
+      description: "An AI-powered data science project that analyzes real-world job listings to uncover in-demand tech skills, salary trends, and career insights using Machine Learning and NLP.",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+      tags: ["Python", "ML", "NLP"],
+      link: "https://github.com/DevAnnafi/AI-Job-Market-Analyzer",
+    },
+    {
+      title: "Security Audit Scanner",
+      category: "Cybersecurity",
+      description: "A comprehensive Python-based security auditing tool designed to monitor system events, detect vulnerabilities, and generate detailed security reports.",
+      image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop",
+      tags: ["Python", "Security", "Automation"],
+      link: "https://github.com/DevAnnafi/Security-Audit-Logger-Vulnerability-Scanner",
+    },
+    {
+      title: "Log Aggregation Pipeline",
+      category: "DevOps / Security",
+      description: "A lightweight Python-based log aggregation and detection pipeline that normalizes logs, applies Sigma-style detection rules, and forwards alerts to Elasticsearch.",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
+      tags: ["Python", "Elasticsearch", "Kibana"],
+      link: "https://github.com/DevAnnafi/Log-Aggregation-Detection-Pipeline",
+    },
+    {
+      title: "Risk Assessment Dashboard",
+      category: "GRC",
+      description: "A GRC project simulating risk identification, scoring, mitigation and visualization for a hypothetical organization.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      tags: ["Python", "Data Viz", "Risk"],
+      link: "https://github.com/DevAnnafi/Risk-Assessment-Dashboard",
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -51,9 +96,14 @@ export default function PortfolioHero() {
     });
   };
 
+  const scrollToWork = () => {
+    const workElement = document.getElementById('work');
+    if (workElement) {
+      workElement.scrollIntoView({ behavior: "smooth"});
+    }
+  }
   return (
     <div className="min-h-screen bg-black text-white font-sans antialiased">
-      {/* Navigation */}
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -108,7 +158,6 @@ export default function PortfolioHero() {
         </div>
       </motion.nav>
 
-      {/* Hero Section */}
       <div className="min-h-screen flex flex-col items-center justify-center px-8 relative">
         <motion.div
           variants={containerVariants}
@@ -146,7 +195,7 @@ export default function PortfolioHero() {
             variants={itemVariants}
             className="text-gray-400 text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-12 font-light"
           >
-            Aspiring software developer on a mission to break into Software, QA,
+            Aspiring software developer on a mission to break into Software
             <br />
             and Cybersecurity. Passionate about creating clean, efficient code
             <br />
@@ -158,7 +207,7 @@ export default function PortfolioHero() {
             className="flex items-center justify-center gap-6"
           >
             <motion.button
-              onClick={scrollToContent}
+              onClick={scrollToWork}
               className="px-8 py-4 rounded-md font-medium flex items-center gap-2 transition-all duration-300 text-black"
               style={{ backgroundColor: '#FF6B35' }}
               whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 107, 53, 0.4)' }}
@@ -179,7 +228,6 @@ export default function PortfolioHero() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -198,11 +246,9 @@ export default function PortfolioHero() {
         </motion.div>
       </div>
 
-      {/* About Me Section */}
       <div id="about" className="min-h-screen px-8 py-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Left Column */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
@@ -247,7 +293,6 @@ export default function PortfolioHero() {
                 learning out loud makes it stick better!
               </motion.p>
 
-              {/* Stats */}
               <motion.div 
                 variants={containerVariants}
                 className="grid grid-cols-3 gap-8"
@@ -274,7 +319,6 @@ export default function PortfolioHero() {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Skills Card */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -322,6 +366,86 @@ export default function PortfolioHero() {
                 ))}
               </div>
             </motion.div>
+          </div>
+        </div>
+      </div>
+
+      <div id="work" className="py-20 px-6 relative" ref={workRef}>
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 text-center">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="mb-4 text-sm uppercase tracking-[0.3em]"
+              style={{ color: '#FF6B35' }}
+            >
+              Selected Work
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-5xl md:text-6xl font-bold"
+            >
+              Featured Projects
+            </motion.h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 hover:border-orange-600 transition-all group cursor-pointer"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span 
+                      className="px-3 py-1 rounded-full text-xs font-medium"
+                      style={{ backgroundColor: '#FF6B35', color: 'black' }}
+                    >
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                  <p className="text-gray-400 text-sm mb-4">{project.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag) => (
+                      <span 
+                        key={tag}
+                        className="px-2 py-1 text-xs rounded border border-zinc-700 text-gray-300 hover:border-orange-600 transition-colors"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block font-medium text-sm"
+                    style={{ color: '#FF6B35' }}
+                    whileHover={{ x: 5 }}
+                  >
+                    View Project →
+                  </motion.a>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
