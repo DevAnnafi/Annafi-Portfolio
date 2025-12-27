@@ -61,7 +61,7 @@ portfolio/
 ## ⚡ Getting Started
 
 # Clone the repository
-git clone https://github.com/DevAnnafi/portfolio.git
+git clone https://github.com/DevAnnafi/Annafi-Portfolio.git
 
 # Install dependencies
 npm install
