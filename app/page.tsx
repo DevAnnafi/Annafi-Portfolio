@@ -126,7 +126,7 @@ export default function PortfolioHero() {
       description:
         "AI-powered productivity system designed with clean architecture and real-world workflows.",
       image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+        "/images/Echelon_Dashboard.png",
       link: "https://github.com/DevAnnafi/Echelon",
     },
     {
@@ -312,7 +312,7 @@ export default function PortfolioHero() {
           className="text-center max-w-6xl"
         >
           <motion.p variants={itemVariants} className="text-cyan-400 tracking-widest text-sm mb-4">
-            SOFTWARE ENGINEER · CYBERSECURITY
+            SOFTWARE DEVELOPER
           </motion.p>
 
           <TypingLine />
@@ -362,7 +362,7 @@ export default function PortfolioHero() {
         </p>
 
         <p className="text-slate-400 leading-relaxed mb-8">
-          My work spans full-stack development, cybersecurity tooling, and data-driven
+          My work spans full-stack development, AI/ML , and data-driven
           systems. I prioritize clean architecture, measurable impact, and designs
           that hold up under pressure — not just in ideal conditions.
         </p>
@@ -374,7 +374,7 @@ export default function PortfolioHero() {
               SPECIALIZATION
             </p>
             <p className="text-slate-200">
-              Secure Software Systems
+              Full Stack Development
             </p>
           </div>
 
@@ -383,7 +383,7 @@ export default function PortfolioHero() {
               FOCUS AREAS
             </p>
             <p className="text-slate-200">
-              Full Stack · Security · Systems
+              Full Stack · AI/ML
             </p>
           </div>
 
@@ -417,26 +417,27 @@ export default function PortfolioHero() {
 
       <ul className="space-y-4 text-sm text-slate-400">
         <li className="flex justify-between">
-          <span>Threat Modeling</span>
+          <span>Full-Stack Application Design</span>
           <span className="text-slate-200">✓</span>
         </li>
         <li className="flex justify-between">
-          <span>Secure Architecture</span>
+          <span>Scalable Backend Systems</span>
           <span className="text-slate-200">✓</span>
         </li>
         <li className="flex justify-between">
-          <span>Data Integrity</span>
+          <span>AI/ML Model Integration</span>
           <span className="text-slate-200">✓</span>
         </li>
         <li className="flex justify-between">
-          <span>Performance Optimization</span>
+          <span>Data Pipelines & Feature Engineering</span>
           <span className="text-slate-200">✓</span>
         </li>
         <li className="flex justify-between">
-          <span>Operational Reliability</span>
+          <span>Performance & Inference Optimization</span>
           <span className="text-slate-200">✓</span>
         </li>
       </ul>
+
 
       <div className="mt-8 pt-4 border-t border-zinc-800 text-xs tracking-widest text-slate-500">
         PROFILE INTEGRITY: VERIFIED
@@ -476,8 +477,19 @@ export default function PortfolioHero() {
           
             {/* CARD BODY */}
             <div className="relative z-10 rounded-lg bg-zinc-900 overflow-hidden">
-              <img src={p.image} alt={p.title} />
-          
+              {/* IMAGE */}
+              <div className="relative h-64 w-full overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              </div>
+
+              {/* CONTENT */}
               <div className="p-6">
                 <p className="text-xs tracking-widest text-cyan-400 mb-2">
                   {p.category}
