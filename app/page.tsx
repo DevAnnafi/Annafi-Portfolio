@@ -124,7 +124,7 @@ export default function PortfolioHero() {
       title: "Echelon",
       category: "SYSTEMS",
       description:
-        "AI-powered productivity system designed with clean architecture and real-world workflows.",
+        "A single workspace that lets a user capture tasks/habits, see progress, and get AI guidance to decide what to do next.",
       image:
         "/images/Echelon_Dashboard.png",
       link: "https://github.com/DevAnnafi/Echelon",
@@ -162,7 +162,7 @@ export default function PortfolioHero() {
       description:
         "Simulated risk evaluation system for scoring, mitigation, and visualization.",
       image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+        "/images/Risk_Dashboard.png",
       link: "https://github.com/DevAnnafi/Risk-Assessment-Dashboard",
     },
   ];
