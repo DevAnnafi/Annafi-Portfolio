@@ -24,12 +24,62 @@ function TypingLine() {
   }, []);
 
   return (
-    <div className="text-cyan-400 font-mono tracking-widest text-xl md:text-3xl mb-6">
+    <div className="text-cyan-400 font-mono tracking-widest text-lg md:text-xl mb-6">
       {displayed}
       <span className="animate-pulse">▍</span>
     </div>
   );
 }
+
+/* ---------------------------------------------
+   Ballistic Text (Bullet-style animation)
+--------------------------------------------- */
+function BallisticText({ text }: { text: string }) {
+  const letters = text.split("");
+
+  const container: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.04,
+      },
+    },
+  };
+
+  const letter: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+      filter: "blur(6px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        type: "spring",
+        stiffness: 600,
+        damping: 30,
+        mass: 0.8,
+      },
+    },
+  };
+
+  return (
+    <motion.span variants={container} className="inline-block">
+      {letters.map((char, i) => (
+        <motion.span
+          key={i}
+          variants={letter}
+          className="inline-block"
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
+
 
 /* ---------------------------------------------
    Main Page
@@ -133,59 +183,31 @@ export default function PortfolioHero() {
             scrollY > 50 ? "rgba(0,0,0,0.85)" : "transparent",
         }}
       >
-        {/* LEFT */}
         <div className="text-lg font-semibold tracking-widest text-cyan-400">
           ANNAFI
         </div>
 
-        {/* CENTER LINKS */}
         <div className="flex gap-10 text-xs tracking-widest text-slate-400">
-          <button
-            onClick={scrollToWork}
-            className="hover:text-cyan-400 transition"
-          >
+          <button onClick={scrollToWork} className="hover:text-cyan-400 transition">
             OPERATIONS
           </button>
-          <button
-            onClick={scrollToContact}
-            className="hover:text-cyan-400 transition"
-          >
+          <button onClick={scrollToContact} className="hover:text-cyan-400 transition">
             CONTACT
           </button>
         </div>
 
-        {/* SOCIAL ICONS */}
         <div className="hidden md:flex items-center gap-5 text-slate-400">
-          <a
-            href="https://github.com/DevAnnafi"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="hover:text-cyan-400 transition hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
-          >
+          <a href="https://github.com/DevAnnafi" target="_blank" className="hover:text-cyan-400 transition">
             <Github size={18} />
           </a>
-          <a
-            href="https://www.linkedin.com/in/annafi-islam"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="hover:text-cyan-400 transition hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
-          >
+          <a href="https://www.linkedin.com/in/annafi-islam" target="_blank" className="hover:text-cyan-400 transition">
             <Linkedin size={18} />
           </a>
-          <a
-            href="https://www.instagram.com/axnnafi"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="hover:text-cyan-400 transition hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
-          >
+          <a href="https://www.instagram.com/axnafi" target="_blank" className="hover:text-cyan-400 transition">
             <Instagram size={18} />
           </a>
         </div>
 
-        {/* CTA */}
         <button
           onClick={scrollToContact}
           className="border border-cyan-500 px-5 py-2 text-xs tracking-widest hover:bg-cyan-500 hover:text-black transition"
@@ -202,28 +224,19 @@ export default function PortfolioHero() {
           animate="visible"
           className="text-center max-w-6xl"
         >
-          <motion.p
-            variants={itemVariants}
-            className="text-cyan-400 tracking-widest text-sm mb-4"
-          >
+          <motion.p variants={itemVariants} className="text-cyan-400 tracking-widest text-sm mb-4">
             SOFTWARE ENGINEER · CYBERSECURITY
           </motion.p>
 
           <TypingLine />
 
-          <motion.h1
-            variants={itemVariants}
-            className="text-6xl md:text-8xl font-bold tracking-tight mb-8"
-          >
-            BUILDING SYSTEMS
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-tight">
+            <BallisticText text="BUILDING SYSTEMS" />
             <br />
-            THAT HOLD
-          </motion.h1>
+            <BallisticText text="THAT HOLD" />
+          </h1>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-slate-400 max-w-3xl mx-auto mb-12"
-          >
+          <motion.p variants={itemVariants} className="text-slate-400 max-w-3xl mx-auto mb-12">
             I design and engineer secure, resilient software systems with
             real-world constraints and mission-critical reliability.
           </motion.p>
@@ -256,9 +269,7 @@ export default function PortfolioHero() {
                   {p.category}
                 </p>
                 <h3 className="text-xl font-semibold">{p.title}</h3>
-                <p className="text-slate-400 text-sm mt-3">
-                  {p.description}
-                </p>
+                <p className="text-slate-400 text-sm mt-3">{p.description}</p>
               </div>
             </motion.a>
           ))}
@@ -273,26 +284,9 @@ export default function PortfolioHero() {
             method="POST"
             className="bg-zinc-900 border border-zinc-800 p-8 space-y-6"
           >
-            <input
-              name="name"
-              placeholder="NAME"
-              className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="EMAIL"
-              className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
-              required
-            />
-            <textarea
-              name="message"
-              rows={5}
-              placeholder="MESSAGE"
-              className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
-              required
-            />
+            <input name="name" placeholder="NAME" className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest" required />
+            <input type="email" name="email" placeholder="EMAIL" className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest" required />
+            <textarea name="message" rows={5} placeholder="MESSAGE" className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest" required />
             <button className="w-full py-3 bg-cyan-500 text-black font-semibold tracking-widest">
               TRANSMIT
             </button>
