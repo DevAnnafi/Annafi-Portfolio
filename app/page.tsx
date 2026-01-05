@@ -507,23 +507,65 @@ export default function PortfolioHero() {
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact" className="py-24 px-8 relative z-10">
-        <div className="max-w-xl mx-auto">
-          <form
-            action="https://formspree.io/f/myzroeyr"
-            method="POST"
-            className="bg-zinc-900 border border-zinc-800 p-8 space-y-6"
-          >
-            <input name="name" placeholder="NAME" className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest" required />
-            <input type="email" name="email" placeholder="EMAIL" className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest" required />
-            <textarea name="message" rows={5} placeholder="MESSAGE" className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest" required />
-            <button className="w-full py-3 bg-cyan-500 text-black font-semibold tracking-widest">
-              TRANSMIT
-            </button>
-          </form>
-        </div>
-      </section>
+     {/* CONTACT */}
+    <section id="contact" className="py-24 px-8 relative z-10">
+    <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+    {/* LEFT — TEXT */}
+    <div>
+      <p className="text-cyan-400 text-xs tracking-widest mb-4">
+        OPEN CHANNEL
+      </p>
+
+      <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        Let’s Build Something That Holds
+      </h2>
+
+      <p className="text-slate-400 leading-relaxed mb-6">
+        Whether you’re looking to collaborate, build a system, or explore an idea,
+        I’m open to conversations that value clarity, intent, and execution.
+      </p>
+
+      <p className="text-slate-400 leading-relaxed">
+        Reach out with a project, question, or opportunity — and let’s see where it
+        leads.
+      </p>
+    </div>
+
+    {/* RIGHT — FORM */}
+    <form
+      action="https://formspree.io/f/myzroeyr"
+      method="POST"
+      className="bg-zinc-900 border border-zinc-800 p-8 space-y-6"
+    >
+      <input
+        name="name"
+        placeholder="NAME"
+        className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="EMAIL"
+        className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
+        required
+      />
+      <textarea
+        name="message"
+        rows={5}
+        placeholder="MESSAGE"
+        className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
+        required
+      />
+      <button className="w-full py-3 bg-cyan-500 text-black font-semibold tracking-widest">
+        TRANSMIT
+      </button>
+    </form>
+
+  </div>
+</section>
+
 
       <footer className="border-t border-zinc-800 py-6 text-center text-xs tracking-widest text-slate-500">
         SYSTEM STATUS: OPERATIONAL · © 2025 ANNAFI
