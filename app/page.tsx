@@ -1,14 +1,42 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronDown, Github, Linkedin, Instagram } from "lucide-react";
 import type { Variants } from "framer-motion";
 
+/* ---------------------------------------------
+   Typing Line (HUD-style)
+--------------------------------------------- */
+function TypingLine() {
+  const text = "Hey, it’s Annafi.";
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayed(text.slice(0, index + 1));
+      index++;
+      if (index === text.length) clearInterval(interval);
+    }, 80);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="text-cyan-400 font-mono tracking-widest text-xl md:text-3xl mb-6">
+      {displayed}
+      <span className="animate-pulse">▍</span>
+    </div>
+  );
+}
+
+/* ---------------------------------------------
+   Main Page
+--------------------------------------------- */
 export default function PortfolioHero() {
   const [scrollY, setScrollY] = useState(0);
   const workRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(workRef, { once: true, margin: "-100px" });
 
   const projects = [
     {
@@ -58,31 +86,6 @@ export default function PortfolioHero() {
     },
   ];
 
-  function TypingLine() {
-    const text = "Hey, it’s Annafi.";
-    const [displayed, setDisplayed] = useState("");
-  
-    useEffect(() => {
-      let index = 0;
-      const interval = setInterval(() => {
-        setDisplayed(text.slice(0, index + 1));
-        index++;
-  
-        if (index === text.length) {
-          clearInterval(interval);
-        }
-      }, 80);
-  
-      return () => clearInterval(interval);
-    }, []);
-  
-    return (
-      <div className="text-cyan-400 font-mono tracking-widest text-2xl mb-6">
-        {displayed}
-        <span className="animate-pulse">▍</span>
-      </div>
-    );
-  }
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -114,7 +117,7 @@ export default function PortfolioHero() {
 
   return (
     <div className="min-h-screen bg-black text-slate-100 overflow-hidden">
-      {/* HUD Background */}
+      {/* HUD Grid Background */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
@@ -130,15 +133,59 @@ export default function PortfolioHero() {
             scrollY > 50 ? "rgba(0,0,0,0.85)" : "transparent",
         }}
       >
+        {/* LEFT */}
         <div className="text-lg font-semibold tracking-widest text-cyan-400">
           ANNAFI
         </div>
 
+        {/* CENTER LINKS */}
         <div className="flex gap-10 text-xs tracking-widest text-slate-400">
-          <button onClick={scrollToWork}>OPERATIONS</button>
-          <button onClick={scrollToContact}>CONTACT</button>
+          <button
+            onClick={scrollToWork}
+            className="hover:text-cyan-400 transition"
+          >
+            OPERATIONS
+          </button>
+          <button
+            onClick={scrollToContact}
+            className="hover:text-cyan-400 transition"
+          >
+            CONTACT
+          </button>
         </div>
 
+        {/* SOCIAL ICONS */}
+        <div className="hidden md:flex items-center gap-5 text-slate-400">
+          <a
+            href="https://github.com/DevAnnafi"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="hover:text-cyan-400 transition hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
+          >
+            <Github size={18} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/annafi-islam"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:text-cyan-400 transition hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
+          >
+            <Linkedin size={18} />
+          </a>
+          <a
+            href="https://www.instagram.com/axnnafi"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="hover:text-cyan-400 transition hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
+          >
+            <Instagram size={18} />
+          </a>
+        </div>
+
+        {/* CTA */}
         <button
           onClick={scrollToContact}
           className="border border-cyan-500 px-5 py-2 text-xs tracking-widest hover:bg-cyan-500 hover:text-black transition"
@@ -157,7 +204,7 @@ export default function PortfolioHero() {
         >
           <motion.p
             variants={itemVariants}
-            className="text-cyan-400 tracking-widest text-sm mb-6"
+            className="text-cyan-400 tracking-widest text-sm mb-4"
           >
             SOFTWARE ENGINEER · CYBERSECURITY
           </motion.p>
