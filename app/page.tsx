@@ -58,6 +58,31 @@ export default function PortfolioHero() {
     },
   ];
 
+  function TypingLine() {
+    const text = "Hey, it’s Annafi.";
+    const [displayed, setDisplayed] = useState("");
+  
+    useEffect(() => {
+      let index = 0;
+      const interval = setInterval(() => {
+        setDisplayed(text.slice(0, index + 1));
+        index++;
+  
+        if (index === text.length) {
+          clearInterval(interval);
+        }
+      }, 80);
+  
+      return () => clearInterval(interval);
+    }, []);
+  
+    return (
+      <div className="text-cyan-400 font-mono tracking-widest text-2xl mb-6">
+        {displayed}
+        <span className="animate-pulse">▍</span>
+      </div>
+    );
+  }
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -136,6 +161,8 @@ export default function PortfolioHero() {
           >
             SOFTWARE ENGINEER · CYBERSECURITY
           </motion.p>
+
+          <TypingLine />
 
           <motion.h1
             variants={itemVariants}
