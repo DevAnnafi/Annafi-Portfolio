@@ -1,73 +1,67 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import React, { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import type { Variants } from "framer-motion";
-
 
 export default function PortfolioHero() {
   const [scrollY, setScrollY] = useState(0);
   const workRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(workRef, { once: true, margin: '-100px' });
+  const isInView = useInView(workRef, { once: true, margin: "-100px" });
 
   const projects = [
     {
-      title: 'Echelon',
-      category: 'Full Stack',
+      title: "Echelon",
+      category: "SYSTEMS",
       description:
-        'An AI-powered personal productivity dashboard built with React, TypeScript, and Tailwind.',
+        "AI-powered productivity system designed with clean architecture and real-world workflows.",
       image:
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-      tags: ['React', 'TypeScript', 'Tailwind'],
-      link: 'https://github.com/DevAnnafi/Echelon',
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      link: "https://github.com/DevAnnafi/Echelon",
     },
     {
-      title: 'AI Job Market Analyzer',
-      category: 'Data Science',
+      title: "AI Job Market Analyzer",
+      category: "INTELLIGENCE",
       description:
-        'Analyzes real-world job listings to uncover in-demand tech skills and salary trends.',
+        "Data-driven analysis of job markets to surface in-demand skills and compensation trends.",
       image:
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-      tags: ['Python', 'ML', 'NLP'],
-      link: 'https://github.com/DevAnnafi/AI-Job-Market-Analyzer',
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+      link: "https://github.com/DevAnnafi/AI-Job-Market-Analyzer",
     },
     {
-      title: 'Security Audit Scanner',
-      category: 'Cybersecurity',
+      title: "Security Audit Scanner",
+      category: "SECURITY",
       description:
-        'Python-based security auditing tool that detects vulnerabilities and generates reports.',
+        "Automated vulnerability detection and reporting system built for security workflows.",
       image:
-        'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop',
-      tags: ['Python', 'Security', 'Automation'],
-      link: 'https://github.com/DevAnnafi/Security-Audit-Logger-Vulnerability-Scanner',
+        "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop",
+      link: "https://github.com/DevAnnafi/Security-Audit-Logger-Vulnerability-Scanner",
     },
     {
-      title: 'Log Aggregation Pipeline',
-      category: 'DevOps / Security',
+      title: "Log Aggregation Pipeline",
+      category: "INFRASTRUCTURE",
       description:
-        'Log aggregation pipeline with Sigma-style detections and Elasticsearch forwarding.',
+        "Centralized logging pipeline with detection logic and Elasticsearch forwarding.",
       image:
-        'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop',
-      tags: ['Python', 'Elasticsearch', 'Kibana'],
-      link: 'https://github.com/DevAnnafi/Log-Aggregation-Detection-Pipeline',
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
+      link: "https://github.com/DevAnnafi/Log-Aggregation-Detection-Pipeline",
     },
     {
-      title: 'Risk Assessment Dashboard',
-      category: 'GRC',
+      title: "Risk Assessment Dashboard",
+      category: "GRC",
       description:
-        'Simulated GRC dashboard for risk identification, scoring, and visualization.',
+        "Simulated risk evaluation system for scoring, mitigation, and visualization.",
       image:
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-      tags: ['Python', 'Data Viz', 'Risk'],
-      link: 'https://github.com/DevAnnafi/Risk-Assessment-Dashboard',
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+      link: "https://github.com/DevAnnafi/Risk-Assessment-Dashboard",
     },
   ];
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const containerVariants = {
@@ -79,178 +73,162 @@ export default function PortfolioHero() {
   };
 
   const itemVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
+    hidden: { opacity: 0, y: 24 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
     },
   };
-  
-
-  const scrollToContent = () =>
-    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
 
   const scrollToWork = () =>
-    document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
 
   const scrollToContact = () =>
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-10 w-96 h-96 rounded-full blur-[60px]"
-          style={{ background: 'rgba(255,107,53,0.15)' }}
-          animate={{ x: [0, 40, 0], y: [0, 60, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-40 right-20 w-96 h-96 rounded-full blur-[60px]"
-          style={{ background: 'rgba(255,107,53,0.1)' }}
-          animate={{ x: [0, -40, 0], y: [0, -60, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        />
+    <div className="min-h-screen bg-black text-slate-100 overflow-hidden">
+      {/* HUD Background */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
-      {/* CONTENT */}
-      <div className="relative z-10">
-        {/* NAV */}
-        <motion.nav
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="fixed top-0 left-0 right-0 z-50 px-8 py-6 flex justify-between items-center"
-          style={{
-            backgroundColor:
-              scrollY > 50 ? 'rgba(0,0,0,0.8)' : 'transparent',
-            backdropFilter: scrollY > 50 ? 'blur(10px)' : 'none',
-          }}
+      {/* NAV */}
+      <motion.nav
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-0 left-0 right-0 z-50 px-8 py-5 flex justify-between items-center backdrop-blur"
+        style={{
+          backgroundColor:
+            scrollY > 50 ? "rgba(0,0,0,0.85)" : "transparent",
+        }}
+      >
+        <div className="text-lg font-semibold tracking-widest text-cyan-400">
+          ANNAFI
+        </div>
+
+        <div className="flex gap-10 text-xs tracking-widest text-slate-400">
+          <button onClick={scrollToWork}>OPERATIONS</button>
+          <button onClick={scrollToContact}>CONTACT</button>
+        </div>
+
+        <button
+          onClick={scrollToContact}
+          className="border border-cyan-500 px-5 py-2 text-xs tracking-widest hover:bg-cyan-500 hover:text-black transition"
         >
-          <div className="text-2xl font-bold">
-            Annafi<span className="text-orange-600">.</span>
-          </div>
+          OPEN CHANNEL
+        </button>
+      </motion.nav>
 
-          <div className="flex gap-10 text-sm text-gray-400">
-            <button onClick={scrollToContent}>ABOUT</button>
-            <button onClick={scrollToWork}>WORK</button>
-            <button onClick={scrollToContact}>CONTACT</button>
-          </div>
-
-          <button
-            onClick={scrollToContact}
-            className="border px-6 py-2 rounded-md hover:bg-white hover:text-black transition"
+      {/* HERO */}
+      <section className="min-h-screen flex items-center justify-center px-8 relative z-10">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-center max-w-6xl"
+        >
+          <motion.p
+            variants={itemVariants}
+            className="text-cyan-400 tracking-widest text-sm mb-6"
           >
-            LET’S TALK
-          </button>
-        </motion.nav>
+            SYSTEMS ENGINEERING · SECURITY
+          </motion.p>
 
-        {/* HERO */}
-        <section className="min-h-screen flex items-center justify-center px-8">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-center max-w-6xl"
+          <motion.h1
+            variants={itemVariants}
+            className="text-6xl md:text-8xl font-bold tracking-tight mb-8"
           >
-            <motion.h1
-              variants={itemVariants}
-              className="text-7xl md:text-9xl font-bold mb-8"
+            BUILDING SYSTEMS
+            <br />
+            THAT HOLD
+          </motion.h1>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-slate-400 max-w-3xl mx-auto mb-12"
+          >
+            I design and engineer secure, resilient software systems with
+            real-world constraints and mission-critical reliability.
+          </motion.p>
+
+          <motion.button
+            variants={itemVariants}
+            onClick={scrollToWork}
+            className="px-8 py-4 bg-cyan-500 text-black font-semibold tracking-widest inline-flex items-center gap-3"
+            whileHover={{ scale: 1.05 }}
+          >
+            VIEW OPERATIONS <ChevronDown />
+          </motion.button>
+        </motion.div>
+      </section>
+
+      {/* WORK */}
+      <section id="work" ref={workRef} className="py-24 px-8 relative z-10">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+          {projects.map((p) => (
+            <motion.a
+              key={p.title}
+              href={p.link}
+              target="_blank"
+              whileHover={{ y: -6 }}
+              className="bg-zinc-900 border border-zinc-800 hover:border-cyan-500 transition overflow-hidden"
             >
-              Software Developer <span className="text-orange-600">&</span>
-              <br />
-              Security
-            </motion.h1>
+              <img src={p.image} alt={p.title} />
+              <div className="p-6">
+                <p className="text-xs tracking-widest text-cyan-400 mb-2">
+                  {p.category}
+                </p>
+                <h3 className="text-xl font-semibold">{p.title}</h3>
+                <p className="text-slate-400 text-sm mt-3">
+                  {p.description}
+                </p>
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </section>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-gray-400 max-w-3xl mx-auto mb-12"
-            >
-              Building secure, performant software with a focus on clean
-              architecture and real-world impact.
-            </motion.p>
+      {/* CONTACT */}
+      <section id="contact" className="py-24 px-8 relative z-10">
+        <div className="max-w-xl mx-auto">
+          <form
+            action="https://formspree.io/f/myzroeyr"
+            method="POST"
+            className="bg-zinc-900 border border-zinc-800 p-8 space-y-6"
+          >
+            <input
+              name="name"
+              placeholder="NAME"
+              className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="EMAIL"
+              className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
+              required
+            />
+            <textarea
+              name="message"
+              rows={5}
+              placeholder="MESSAGE"
+              className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
+              required
+            />
+            <button className="w-full py-3 bg-cyan-500 text-black font-semibold tracking-widest">
+              TRANSMIT
+            </button>
+          </form>
+        </div>
+      </section>
 
-            <motion.button
-              variants={itemVariants}
-              onClick={scrollToWork}
-              className="px-8 py-4 bg-orange-600 text-black font-semibold rounded-md inline-flex items-center gap-2"
-              whileHover={{ scale: 1.05 }}
-            >
-              VIEW MY WORK <ChevronDown />
-            </motion.button>
-          </motion.div>
-        </section>
-
-        {/* WORK */}
-        <section id="work" ref={workRef} className="py-24 px-8">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
-            {projects.map((p) => (
-              <motion.a
-                key={p.title}
-                href={p.link}
-                target="_blank"
-                whileHover={{ y: -6 }}
-                className="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 hover:border-orange-600 transition"
-              >
-                <img src={p.image} alt={p.title} />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold">{p.title}</h3>
-                  <p className="text-gray-400 text-sm mt-2">
-                    {p.description}
-                  </p>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section id="contact" className="py-24 px-8">
-          <div className="max-w-xl mx-auto">
-            <form
-              action="https://formspree.io/f/myzroeyr"
-              method="POST"
-              className="bg-zinc-900 p-8 rounded-xl border border-zinc-800 space-y-6"
-            >
-              <input
-                name="name"
-                placeholder="Your name"
-                className="w-full p-3 bg-zinc-800 rounded"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="w-full p-3 bg-zinc-800 rounded"
-                required
-              />
-              <textarea
-                name="message"
-                rows={5}
-                placeholder="Message"
-                className="w-full p-3 bg-zinc-800 rounded"
-                required
-              />
-              <button className="w-full py-3 bg-orange-600 text-black font-bold rounded">
-                SEND MESSAGE
-              </button>
-            </form>
-          </div>
-        </section>
-
-        <footer className="border-t border-zinc-800 py-8 text-center text-gray-500 text-sm">
-          © 2025 Annafi. All rights reserved.
-        </footer>
-      </div>
+      <footer className="border-t border-zinc-800 py-6 text-center text-xs tracking-widest text-slate-500">
+        SYSTEM STATUS: OPERATIONAL · © 2025 ANNAFI
+      </footer>
     </div>
   );
 }
