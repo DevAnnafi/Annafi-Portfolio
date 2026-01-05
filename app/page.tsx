@@ -80,6 +80,37 @@ function BallisticText({ text }: { text: string }) {
   );
 }
 
+function HudHighlight({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.span
+      initial={{ opacity: 0.7 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="relative inline-block font-bold text-slate-100"
+    >
+      {/* Animated scanline */}
+      <motion.span
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="absolute left-0 bottom-0 h-[2px] w-full bg-cyan-400 origin-left"
+      />
+
+      {/* Glow flash */}
+      <motion.span
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.15, duration: 0.25 }}
+        className="absolute inset-0 bg-cyan-400/20 blur-md -z-10"
+      />
+
+      {children}
+    </motion.span>
+  );
+}
 
 /* ---------------------------------------------
    Main Page
@@ -165,6 +196,9 @@ export default function PortfolioHero() {
   const scrollToContact = () =>
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
 
+  const scrollToAbout = () =>
+    document.getElementById("about")?.scrollIntoView({behavior: "smooth"});
+
   return (
     <div className="min-h-screen bg-black text-slate-100 overflow-hidden">
       {/* HUD Grid Background */}
@@ -190,6 +224,9 @@ export default function PortfolioHero() {
         <div className="flex gap-10 text-xs tracking-widest text-slate-400">
           <button onClick={scrollToWork} className="hover:text-cyan-400 transition">
             OPERATIONS
+          </button>
+          <button onClick={scrollToAbout} className="hover:text-cyan-400 transition">
+            ABOUT
           </button>
           <button onClick={scrollToContact} className="hover:text-cyan-400 transition">
             CONTACT
@@ -251,6 +288,114 @@ export default function PortfolioHero() {
           </motion.button>
         </motion.div>
       </section>
+
+      {/* ABOUT */}
+<section id="about" className="py-32 px-8 relative z-10">
+  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    
+    {/* LEFT — TEXT */}
+    <div>
+      <p className="text-cyan-400 text-xs tracking-widest mb-4">
+        PERSONNEL FILE
+      </p>
+
+      <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        <HudHighlight>About the Operator</HudHighlight>
+      </h2>
+
+
+      <p className="text-slate-400 leading-relaxed mb-6">
+        I’m a software engineer with a strong focus on security, systems design,
+        and reliability under real-world constraints. I approach engineering the
+        same way mission-critical systems are built — with clarity, discipline,
+        and intent.
+      </p>
+
+      <p className="text-slate-400 leading-relaxed mb-8">
+        My work spans full-stack development, cybersecurity tooling, and data-driven
+        systems. I prioritize clean architecture, measurable impact, and designs
+        that hold up under pressure — not just in ideal conditions.
+      </p>
+
+      {/* STATS */}
+      <div className="grid grid-cols-2 gap-6 text-sm">
+        <div className="border border-zinc-800 p-4">
+          <p className="text-cyan-400 tracking-widest text-xs mb-1">
+            SPECIALIZATION
+          </p>
+          <p className="text-slate-200">
+            Secure Software Systems
+          </p>
+        </div>
+
+        <div className="border border-zinc-800 p-4">
+          <p className="text-cyan-400 tracking-widest text-xs mb-1">
+            FOCUS AREAS
+          </p>
+          <p className="text-slate-200">
+            Full Stack · Security · Systems
+          </p>
+        </div>
+
+        <div className="border border-zinc-800 p-4">
+          <p className="text-cyan-400 tracking-widest text-xs mb-1">
+            STACK
+          </p>
+          <p className="text-slate-200">
+            React · TypeScript · Python
+          </p>
+        </div>
+
+        <div className="border border-zinc-800 p-4">
+          <p className="text-cyan-400 tracking-widest text-xs mb-1">
+            STATUS
+          </p>
+          <p className="text-green-400">
+            ACTIVE · AVAILABLE
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* RIGHT — VISUAL / HUD BLOCK */}
+    <div className="border border-zinc-800 bg-black p-8 relative">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+
+      <p className="text-xs tracking-widest text-cyan-400 mb-4">
+        SYSTEM PROFILE
+      </p>
+
+      <ul className="space-y-4 text-sm text-slate-400">
+        <li className="flex justify-between">
+          <span>Threat Modeling</span>
+          <span className="text-slate-200">✓</span>
+        </li>
+        <li className="flex justify-between">
+          <span>Secure Architecture</span>
+          <span className="text-slate-200">✓</span>
+        </li>
+        <li className="flex justify-between">
+          <span>Data Integrity</span>
+          <span className="text-slate-200">✓</span>
+        </li>
+        <li className="flex justify-between">
+          <span>Performance Optimization</span>
+          <span className="text-slate-200">✓</span>
+        </li>
+        <li className="flex justify-between">
+          <span>Operational Reliability</span>
+          <span className="text-slate-200">✓</span>
+        </li>
+      </ul>
+
+      <div className="mt-8 pt-4 border-t border-zinc-800 text-xs tracking-widest text-slate-500">
+        PROFILE INTEGRITY: VERIFIED
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
       {/* WORK */}
       <section id="work" ref={workRef} className="py-24 px-8 relative z-10">
