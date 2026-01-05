@@ -124,10 +124,11 @@ export default function PortfolioHero() {
       title: "Echelon",
       category: "SYSTEMS",
       description:
-        "A single workspace that lets a user capture tasks/habits, see progress, and get AI guidance to decide what to do next.",
+        "A single workspace that lets a user capture tasks/habits, see progress, and get AI guidance to decide what to do next",
       image:
         "/images/Echelon_Dashboard.png",
       link: "https://github.com/DevAnnafi/Echelon",
+      techStack: ["Next.js (React 18) + TypeScript, Tailwind CSS + shadcn/ui + Framer Motion, PostgreSQL (Supabase), Vercel"]
     },
     {
       title: "AI Job Market Analyzer",
@@ -137,6 +138,7 @@ export default function PortfolioHero() {
       image:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
       link: "https://github.com/DevAnnafi/AI-Job-Market-Analyzer",
+      techStack: ["Python", "pandas", "numpy", "scikit-learn", "spaCy", "Prophet", "Streamlit", "matplotlib", "seaborn"]
     },
     {
       title: "Security Audit Scanner",
@@ -146,6 +148,7 @@ export default function PortfolioHero() {
       image:
         "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop",
       link: "https://github.com/DevAnnafi/Security-Audit-Logger-Vulnerability-Scanner",
+      techStack: ["Python", "Flask", "PostgreSQL", "Numpy/Scikit", "Plotly", "Cryptography"]
     },
     {
       title: "Log Aggregation Pipeline",
@@ -155,6 +158,7 @@ export default function PortfolioHero() {
       image:
         "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
       link: "https://github.com/DevAnnafi/Log-Aggregation-Detection-Pipeline",
+      techStack: ["Python"]
     },
     {
       title: "Risk Assessment Dashboard",
@@ -164,6 +168,7 @@ export default function PortfolioHero() {
       image:
         "/images/Risk_Dashboard.png",
       link: "https://github.com/DevAnnafi/Risk-Assessment-Dashboard",
+      techStack: ["Python", "Pandas", "Matplotlib", "Seaborn"]
     },
   ];
 
@@ -253,8 +258,6 @@ export default function PortfolioHero() {
         "
       />
     </div>
-
-
 
       {/* NAV */}
       <motion.nav
@@ -499,6 +502,17 @@ export default function PortfolioHero() {
                 <p className="text-slate-400 text-sm mt-3">
                   {p.description}
                 </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.techStack?.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs tracking-widest px-2 py-1 border border-cyan-400/30 text-cyan-300/80 rounded"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
               </div>
             </div>
           </motion.a>                   
