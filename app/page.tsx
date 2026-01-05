@@ -340,72 +340,72 @@ export default function PortfolioHero() {
       </section>
 
       {/* ABOUT */}
-<section id="about" className="py-32 px-8 relative z-10">
-  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-    
-    {/* LEFT — TEXT */}
-    <div>
-      <p className="text-cyan-400 text-xs tracking-widest mb-4">
-        PERSONNEL FILE
-      </p>
+      <section id="about" className="py-32 px-8 relative z-10">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      
+      {/* LEFT — TEXT */}
+      <div>
+        <p className="text-cyan-400 text-xs tracking-widest mb-4">
+          PERSONNEL FILE
+        </p>
 
-      <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-        <HudHighlight>About the Operator</HudHighlight>
-      </h2>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <HudHighlight>About the Operator</HudHighlight>
+        </h2>
 
 
-      <p className="text-slate-400 leading-relaxed mb-6">
-        I’m a software engineer with a strong focus on security, systems design,
-        and reliability under real-world constraints. I approach engineering the
-        same way mission-critical systems are built — with clarity, discipline,
-        and intent.
-      </p>
+        <p className="text-slate-400 leading-relaxed mb-6">
+          I’m a software engineer with a strong focus on security, systems design,
+          and reliability under real-world constraints. I approach engineering the
+          same way mission-critical systems are built — with clarity, discipline,
+          and intent.
+        </p>
 
-      <p className="text-slate-400 leading-relaxed mb-8">
-        My work spans full-stack development, cybersecurity tooling, and data-driven
-        systems. I prioritize clean architecture, measurable impact, and designs
-        that hold up under pressure — not just in ideal conditions.
-      </p>
+        <p className="text-slate-400 leading-relaxed mb-8">
+          My work spans full-stack development, cybersecurity tooling, and data-driven
+          systems. I prioritize clean architecture, measurable impact, and designs
+          that hold up under pressure — not just in ideal conditions.
+        </p>
 
-      {/* STATS */}
-      <div className="grid grid-cols-2 gap-6 text-sm">
-        <div className="border border-zinc-800 p-4">
-          <p className="text-cyan-400 tracking-widest text-xs mb-1">
-            SPECIALIZATION
-          </p>
-          <p className="text-slate-200">
-            Secure Software Systems
-          </p>
-        </div>
+        {/* STATS */}
+        <div className="grid grid-cols-2 gap-6 text-sm">
+          <div className="border border-zinc-800 p-4">
+            <p className="text-cyan-400 tracking-widest text-xs mb-1">
+              SPECIALIZATION
+            </p>
+            <p className="text-slate-200">
+              Secure Software Systems
+            </p>
+          </div>
 
-        <div className="border border-zinc-800 p-4">
-          <p className="text-cyan-400 tracking-widest text-xs mb-1">
-            FOCUS AREAS
-          </p>
-          <p className="text-slate-200">
-            Full Stack · Security · Systems
-          </p>
-        </div>
+          <div className="border border-zinc-800 p-4">
+            <p className="text-cyan-400 tracking-widest text-xs mb-1">
+              FOCUS AREAS
+            </p>
+            <p className="text-slate-200">
+              Full Stack · Security · Systems
+            </p>
+          </div>
 
-        <div className="border border-zinc-800 p-4">
-          <p className="text-cyan-400 tracking-widest text-xs mb-1">
-            STACK
-          </p>
-          <p className="text-slate-200">
-            React · TypeScript · Python
-          </p>
-        </div>
+          <div className="border border-zinc-800 p-4">
+            <p className="text-cyan-400 tracking-widest text-xs mb-1">
+              STACK
+            </p>
+            <p className="text-slate-200">
+              React · TypeScript · Python
+            </p>
+          </div>
 
-        <div className="border border-zinc-800 p-4">
-          <p className="text-cyan-400 tracking-widest text-xs mb-1">
-            STATUS
-          </p>
-          <p className="text-green-400">
-            ACTIVE · AVAILABLE
-          </p>
+          <div className="border border-zinc-800 p-4">
+            <p className="text-cyan-400 tracking-widest text-xs mb-1">
+              STATUS
+            </p>
+            <p className="text-green-400">
+              ACTIVE · AVAILABLE
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
     {/* RIGHT — VISUAL / HUD BLOCK */}
     <div className="border border-zinc-800 bg-black p-8 relative">
@@ -452,21 +452,64 @@ export default function PortfolioHero() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
           {projects.map((p) => (
             <motion.a
-              key={p.title}
-              href={p.link}
-              target="_blank"
-              whileHover={{ y: -6 }}
-              className="bg-zinc-900 border border-zinc-800 hover:border-cyan-500 transition overflow-hidden"
-            >
-              <img src={p.image} alt={p.title} />
-              <div className="p-6">
-                <p className="text-xs tracking-widest text-cyan-400 mb-2">
-                  {p.category}
-                </p>
-                <h3 className="text-xl font-semibold">{p.title}</h3>
-                <p className="text-slate-400 text-sm mt-3">{p.description}</p>
-              </div>
-            </motion.a>
+            key={p.title}
+            href={p.link}
+            target="_blank"
+            whileHover={{ y: -6 }}
+            className="
+              group
+              relative
+              bg-zinc-900
+              overflow-hidden
+              transition
+            "
+          >
+            {/* GOLD ENERGY SHIELD */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                inset-0
+                rounded-lg
+                border
+                border-amber-400/0
+                group-hover:border-amber-400/70
+                transition-colors
+                duration-300
+                group-hover:shadow-[0_0_25px_rgba(251,191,36,0.35)]
+              "
+            />
+          
+            {/* FORERUNNER STRUCTURAL RING */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -inset-[2px]
+                rounded-lg
+                border
+                border-amber-300/0
+                group-hover:border-amber-300/40
+                transition-colors
+                duration-300
+              "
+            />
+          
+            {/* CARD CONTENT */}
+            <img src={p.image} alt={p.title} />
+          
+            <div className="p-6 relative z-10">
+              <p className="text-xs tracking-widest text-cyan-400 mb-2">
+                {p.category}
+              </p>
+              <h3 className="text-xl font-semibold">
+                {p.title}
+              </h3>
+              <p className="text-slate-400 text-sm mt-3">
+                {p.description}
+              </p>
+            </div>
+          </motion.a>          
           ))}
         </div>
       </section>
