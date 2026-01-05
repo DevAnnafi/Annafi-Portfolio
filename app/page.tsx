@@ -290,7 +290,7 @@ export default function PortfolioHero() {
           <a href="https://www.linkedin.com/in/annafi-islam" target="_blank" className="hover:text-cyan-400 transition">
             <Linkedin size={18} />
           </a>
-          <a href="https://www.instagram.com/axnafi" target="_blank" className="hover:text-cyan-400 transition">
+          <a href="https://www.instagram.com/axnnafi" target="_blank" className="hover:text-cyan-400 transition">
             <Instagram size={18} />
           </a>
         </div>
@@ -318,14 +318,13 @@ export default function PortfolioHero() {
           <TypingLine />
 
           <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-tight">
-            <BallisticText text="BUILDING SYSTEMS" />
+            <BallisticText text="BUILDING SOFTWARE" />
             <br />
-            <BallisticText text="THAT HOLD" />
+            <BallisticText text="FOR REAL-WORLD APPS" />
           </h1>
 
           <motion.p variants={itemVariants} className="text-slate-400 max-w-3xl mx-auto mb-12">
-            I design and engineer secure, resilient software systems with
-            real-world constraints and mission-critical reliability.
+          I build and maintain scalable, resilient applications with clean architecture and production-grade reliability.
           </motion.p>
 
           <motion.button
