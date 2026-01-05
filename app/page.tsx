@@ -170,6 +170,16 @@ export default function PortfolioHero() {
       link: "https://github.com/DevAnnafi/Risk-Assessment-Dashboard",
       techStack: ["Python", "Pandas", "Matplotlib", "Seaborn"]
     },
+    {
+      title: "Graph Runner",
+      category: "Games",
+      description: "Graph Runner is a fast-paced, precision-based arcade game inspired by The World’s Hardest Game.It combines continuous player movement with Dijkstra’s algorithm–driven enemy pathfinding.",
+      image:
+        "/images/Graph_Run.png",
+      link:"https://github.com/DevAnnafi/GraphRunner",
+      techStack: ["Python", "Pygame", "Djikstra's Algorithm"]
+
+    }
   ];
 
   useEffect(() => {
