@@ -134,7 +134,7 @@ export default function PortfolioHero() {
             variants={itemVariants}
             className="text-cyan-400 tracking-widest text-sm mb-6"
           >
-            SYSTEMS ENGINEERING · SECURITY
+            SOFTWARE ENGINEER · CYBERSECURITY
           </motion.p>
 
           <motion.h1
