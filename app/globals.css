@@ -24,3 +24,40 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes goldPulse {
+  0% {
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(251, 191, 36, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.15);
+  }
+}
+
+
+@keyframes haloEnergy {
+  0% {
+    opacity: 0.25;
+    background-position: 0% 50%;
+  }
+  50% {
+    opacity: 0.45;
+    background-position: 100% 50%;
+  }
+  100% {
+    opacity: 0.25;
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes haloBorder {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}

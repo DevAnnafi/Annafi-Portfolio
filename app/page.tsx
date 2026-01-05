@@ -457,59 +457,40 @@ export default function PortfolioHero() {
             target="_blank"
             whileHover={{ y: -6 }}
             className="
-              group
               relative
-              bg-zinc-900
+              rounded-lg
+              p-[2px]
               overflow-hidden
-              transition
             "
           >
-            {/* GOLD ENERGY SHIELD */}
+            {/* ANIMATED HALO BORDER */}
             <div
               className="
-                pointer-events-none
                 absolute
                 inset-0
                 rounded-lg
-                border
-                border-amber-400/0
-                group-hover:border-amber-400/70
-                transition-colors
-                duration-300
-                group-hover:shadow-[0_0_25px_rgba(251,191,36,0.35)]
+                animate-[haloBorder_10s_linear_infinite]
+                [background:conic-gradient(from_var(--angle),#38bdf8,#fbbf24,#38bdf8)]
               "
             />
           
-            {/* FORERUNNER STRUCTURAL RING */}
-            <div
-              className="
-                pointer-events-none
-                absolute
-                -inset-[2px]
-                rounded-lg
-                border
-                border-amber-300/0
-                group-hover:border-amber-300/40
-                transition-colors
-                duration-300
-              "
-            />
+            {/* CARD BODY */}
+            <div className="relative z-10 rounded-lg bg-zinc-900 overflow-hidden">
+              <img src={p.image} alt={p.title} />
           
-            {/* CARD CONTENT */}
-            <img src={p.image} alt={p.title} />
-          
-            <div className="p-6 relative z-10">
-              <p className="text-xs tracking-widest text-cyan-400 mb-2">
-                {p.category}
-              </p>
-              <h3 className="text-xl font-semibold">
-                {p.title}
-              </h3>
-              <p className="text-slate-400 text-sm mt-3">
-                {p.description}
-              </p>
+              <div className="p-6">
+                <p className="text-xs tracking-widest text-cyan-400 mb-2">
+                  {p.category}
+                </p>
+                <h3 className="text-xl font-semibold">
+                  {p.title}
+                </h3>
+                <p className="text-slate-400 text-sm mt-3">
+                  {p.description}
+                </p>
+              </div>
             </div>
-          </motion.a>          
+          </motion.a>                   
           ))}
         </div>
       </section>
