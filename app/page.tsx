@@ -202,9 +202,59 @@ export default function PortfolioHero() {
   return (
     <div className="min-h-screen bg-black text-slate-100 overflow-hidden">
       {/* HUD Grid Background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
-      </div>
+    <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="absolute inset-0 bg-[linear-gradient(...)]" />
+    </div>
+
+    {/* HALO RING SURFACE (WRAP-AROUND) */}
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Ring curvature */}
+      <div
+        className="
+          absolute
+          left-1/2
+          top-[-1400px]
+          -translate-x-1/2
+          w-[4200px]
+          h-[4200px]
+          rounded-full
+          bg-[radial-gradient(ellipse_at_center,_rgba(56,189,248,0.18)_0%,_rgba(56,189,248,0.10)_22%,_rgba(0,0,0,0.92)_55%)]
+        "
+      />
+
+      {/* Ring edge highlights (left + right falloff) */}
+      <div
+        className="
+          absolute
+          left-1/2
+          top-[-1400px]
+          -translate-x-1/2
+          w-[4200px]
+          h-[4200px]
+          rounded-full
+          border
+          border-cyan-400/20
+          blur-[1px]
+        "
+      />
+
+      {/* Atmospheric glow */}
+      <div
+        className="
+          absolute
+          left-1/2
+          top-[-1400px]
+          -translate-x-1/2
+          w-[5200px]
+          h-[5200px]
+          rounded-full
+          bg-cyan-400/5
+          blur-[220px]
+        "
+      />
+    </div>
+
+
 
       {/* NAV */}
       <motion.nav
