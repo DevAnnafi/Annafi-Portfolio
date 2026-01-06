@@ -176,7 +176,7 @@ export default function PortfolioHero() {
       description: "Graph Runner is a fast-paced, precision-based arcade game inspired by The World’s Hardest Game.It combines continuous player movement with Dijkstra’s algorithm–driven enemy pathfinding.",
       image:
         "/images/Graph_Run.png",
-      link:"https://github.com/DevAnnafi/GraphRunner",
+      link:"https://graph-runner-web.vercel.app/",
       techStack: ["Python", "Pygame", "Djikstra's Algorithm"]
 
     }
