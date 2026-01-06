@@ -61,3 +61,18 @@ body {
     --angle: 360deg;
   }
 }
+
+@keyframes hudPulse {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+}
+
+.hud-pulse {
+  animation: hudPulse 6s ease-in-out infinite;
+}

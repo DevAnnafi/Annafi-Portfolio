@@ -217,7 +217,7 @@ export default function PortfolioHero() {
   return (
     <div className="min-h-screen bg-black text-slate-100 overflow-hidden">
       {/* HUD Grid Background */}
-    <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden hud-pulse">
       <div className="absolute inset-0 bg-[linear-gradient(...)]" />
     </div>
 
