@@ -177,7 +177,7 @@ export default function PortfolioHero() {
       image:
         "/images/Graph_Run.png",
       link:"https://graph-runner-web.vercel.app/",
-      techStack: ["Python", "Pygame", "Djikstra's Algorithm"]
+      techStack: ["Python", "Pygame", "Djikstra's Algorithm", "React.js", "Next.js", "TailwindCSS"]
 
     }
   ];
