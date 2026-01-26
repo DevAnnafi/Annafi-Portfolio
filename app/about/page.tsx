@@ -71,10 +71,10 @@ export default function About() {
               </h2>
               <div className="text-gray-300 space-y-4 leading-relaxed">
                 <p>
-                  I'm a software engineer with a strong focus on security, systems design, and reliability under real-world constraints. I approach engineering the same way mission-critical systems are built — with clarity, discipline, and intent.
+                  As a software engineer, I have an intense interest in systems design, security, and dependability under realistic constraints. I approach engineering with clarity, discipline, and intent.
                 </p>
                 <p>
-                  My work spans full-stack development, AI/ML, and data-driven systems. I prioritize clean architecture, measurable impact, and designs that hold up under pressure — not just in ideal conditions.
+                  I work on data-driven systems, AI/ML, and full-stack development. Clean architecture, measurable impact, and designs that endure under pressure—not just in perfect circumstances—are my top priorities.
                 </p>
               </div>
             </motion.div>
