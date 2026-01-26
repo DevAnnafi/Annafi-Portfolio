@@ -48,6 +48,7 @@ const projects = [
     description: 'Simulated risk evaluation system for scoring, mitigation, and visualization.',
     tech: ['Python', 'Pandas', 'Matplotlib', 'Seaborn'],
     image: 'https://annafiislam.com/images/Risk_Dashboard.png',
+    link: 'https://risk-assessment-dashboard-annafi.streamlit.app/',
     github: 'https://github.com/DevAnnafi/Risk-Assessment-Dashboard',
     categoryColor: 'from-yellow-500 to-amber-500'
   },
