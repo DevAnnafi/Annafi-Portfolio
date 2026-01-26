@@ -269,23 +269,25 @@ export default function Home() {
         transition={{ delay: 2, duration: 0.8 }}
         className="absolute bottom-8 left-8 md:left-16 flex gap-4"
       >
-        <a
-          href="https://github.com/DevAnnafi"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          aria-label="Open GitHub"
+          onClick={() => window.open("https://github.com/DevAnnafi", "_blank", "noopener,noreferrer")}
           className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-950/50 to-cyan-900/50 border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300 group"
         >
           <Github className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300" />
-        </a>
-        <a
-          href="https://linkedin.com/in/annafi-islam"
-          target="_blank"
-          rel="noopener noreferrer"
+        </button>
+
+        <button
+          type="button"
+          aria-label="Open LinkedIn"
+          onClick={() => window.open("https://linkedin.com/in/annafi-islam", "_blank", "noopener,noreferrer")}
           className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-950/50 to-cyan-900/50 border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300 group"
         >
           <Linkedin className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300" />
-        </a>
+        </button>
       </motion.div>
+
 
       <motion.div
         initial={{ opacity: 0 }}
