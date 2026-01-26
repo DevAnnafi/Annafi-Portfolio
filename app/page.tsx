@@ -1,598 +1,324 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
-import { ChevronDown, Github, Linkedin, Instagram } from "lucide-react";
-import type { Variants } from "framer-motion";
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { User, Target, Cpu, Mail, Github, Linkedin } from 'lucide-react';
 
-/* ---------------------------------------------
-   Typing Line (HUD-style)
---------------------------------------------- */
-function TypingLine() {
-  const text = "Hey, it’s Annafi.";
-  const [displayed, setDisplayed] = useState("");
+const menuItems = [
+  { label: 'ABOUT ME', page: '/about', description: 'Learn more about who I am', icon: User, position: { x: 15, y: 20 } },
+  { label: 'PROJECTS', page: '/projects', description: 'View my work and creations', icon: Target, position: { x: 35, y: 40 } },
+  { label: 'SKILLS', page: '/skills', description: 'Technologies I work with', icon: Cpu, position: { x: 60, y: 35 } },
+  { label: 'CONTACT', page: '/contact', description: 'Get in touch with me', icon: Mail, position: { x: 85, y: 60 } },
+];
 
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayed(text.slice(0, index + 1));
-      index++;
-      if (index === text.length) clearInterval(interval);
-    }, 80);
+export default function Home() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [playerPosition, setPlayerPosition] = useState(0);
 
-    return () => clearInterval(interval);
-  }, []);
+  const pathData = "M 15 20 Q 25 30, 35 40 Q 47 38, 60 35 Q 72 47, 85 60";
 
   return (
-    <div className="text-cyan-400 font-mono tracking-widest text-lg md:text-xl mb-6">
-      {displayed}
-      <span className="animate-pulse">▍</span>
-    </div>
-  );
-}
-
-/* ---------------------------------------------
-   Ballistic Text (Bullet-style animation)
---------------------------------------------- */
-function BallisticText({ text }: { text: string }) {
-  const letters = text.split("");
-
-  const container: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.04,
-      },
-    },
-  };
-
-  const letter: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 40,
-      filter: "blur(6px)",
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        type: "spring",
-        stiffness: 600,
-        damping: 30,
-        mass: 0.8,
-      },
-    },
-  };
-
-  return (
-    <motion.span variants={container} className="inline-block">
-      {letters.map((char, i) => (
-        <motion.span
-          key={i}
-          variants={letter}
-          className="inline-block"
-        >
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
-    </motion.span>
-  );
-}
-
-function HudHighlight({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.span
-      initial={{ opacity: 0.7 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative inline-block font-bold text-slate-100"
-    >
-      {/* Animated scanline */}
-      <motion.span
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="absolute left-0 bottom-0 h-[2px] w-full bg-cyan-400 origin-left"
-      />
-
-      {/* Glow flash */}
-      <motion.span
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.15, duration: 0.25 }}
-        className="absolute inset-0 bg-cyan-400/20 blur-md -z-10"
-      />
-
-      {children}
-    </motion.span>
-  );
-}
-
-/* ---------------------------------------------
-   Main Page
---------------------------------------------- */
-export default function PortfolioHero() {
-  const [scrollY, setScrollY] = useState(0);
-  const workRef = useRef<HTMLDivElement | null>(null);
-
-  const projects = [
-    {
-      title: "Echelon",
-      category: "SYSTEMS",
-      description:
-        "A single workspace that lets a user capture tasks/habits, see progress, and get AI guidance to decide what to do next",
-      image:
-        "/images/Echelon_Dashboard.png",
-      link: "https://github.com/DevAnnafi/Echelon",
-      techStack: ["Next.js (React 18) + TypeScript, Tailwind CSS + shadcn/ui + Framer Motion, PostgreSQL (Supabase), Vercel"]
-    },
-    {
-      title: "AI Job Market Analyzer",
-      category: "INTELLIGENCE",
-      description:
-        "Data-driven analysis of job markets to surface in-demand skills and compensation trends.",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-      link: "https://github.com/DevAnnafi/AI-Job-Market-Analyzer",
-      techStack: ["Python", "pandas", "numpy", "scikit-learn", "spaCy", "Prophet", "Streamlit", "matplotlib", "seaborn"]
-    },
-    {
-      title: "Security Audit Scanner",
-      category: "SECURITY",
-      description:
-        "Automated vulnerability detection and reporting system built for security workflows.",
-      image:
-        "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop",
-      link: "https://github.com/DevAnnafi/Security-Audit-Logger-Vulnerability-Scanner",
-      techStack: ["Python", "Flask", "PostgreSQL", "Numpy/Scikit", "Plotly", "Cryptography"]
-    },
-    {
-      title: "Log Aggregation Pipeline",
-      category: "INFRASTRUCTURE",
-      description:
-        "Centralized logging pipeline with detection logic and Elasticsearch forwarding.",
-      image:
-        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
-      link: "https://github.com/DevAnnafi/Log-Aggregation-Detection-Pipeline",
-      techStack: ["Python"]
-    },
-    {
-      title: "Risk Assessment Dashboard",
-      category: "GRC",
-      description:
-        "Simulated risk evaluation system for scoring, mitigation, and visualization.",
-      image:
-        "/images/Risk_Dashboard.png",
-      link: "https://github.com/DevAnnafi/Risk-Assessment-Dashboard",
-      techStack: ["Python", "Pandas", "Matplotlib", "Seaborn"]
-    },
-    {
-      title: "Graph Runner",
-      category: "Games",
-      description: "Graph Runner is a fast-paced, precision-based arcade game inspired by The World’s Hardest Game.It combines continuous player movement with Dijkstra’s algorithm–driven enemy pathfinding.",
-      image:
-        "/images/Graph_Run.png",
-      link:"https://graph-runner-web.vercel.app/",
-      techStack: ["Python", "Pygame", "Djikstra's Algorithm", "React.js", "Next.js", "TailwindCSS"]
-
-    }
-  ];
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
-
-  const scrollToWork = () =>
-    document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
-
-  const scrollToContact = () =>
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-
-  const scrollToAbout = () =>
-    document.getElementById("about")?.scrollIntoView({behavior: "smooth"});
-
-  return (
-    <div className="min-h-screen bg-black text-slate-100 overflow-hidden">
-      {/* HUD Grid Background */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden hud-pulse">
-      <div className="absolute inset-0 bg-[linear-gradient(...)]" />
-    </div>
-
-    {/* HALO RING SURFACE (WRAP-AROUND) */}
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Ring curvature */}
-      <div
-        className="
-          absolute
-          left-1/2
-          top-[-1400px]
-          -translate-x-1/2
-          w-[4200px]
-          h-[4200px]
-          rounded-full
-          bg-[radial-gradient(ellipse_at_center,_rgba(56,189,248,0.18)_0%,_rgba(56,189,248,0.10)_22%,_rgba(0,0,0,0.92)_55%)]
-        "
-      />
-
-      {/* Ring edge highlights (left + right falloff) */}
-      <div
-        className="
-          absolute
-          left-1/2
-          top-[-1400px]
-          -translate-x-1/2
-          w-[4200px]
-          h-[4200px]
-          rounded-full
-          border
-          border-cyan-400/20
-          blur-[1px]
-        "
-      />
-
-      {/* Atmospheric glow */}
-      <div
-        className="
-          absolute
-          left-1/2
-          top-[-1400px]
-          -translate-x-1/2
-          w-[5200px]
-          h-[5200px]
-          rounded-full
-          bg-cyan-400/5
-          blur-[220px]
-        "
-      />
-    </div>
-
-      {/* NAV */}
-      <motion.nav
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 right-0 z-50 px-8 py-5 flex justify-between items-center backdrop-blur"
+    <div className="min-h-screen bg-[#0a1628] relative overflow-hidden">
+      {/* Background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundColor:
-            scrollY > 50 ? "rgba(0,0,0,0.85)" : "transparent",
+          backgroundImage: `
+            linear-gradient(to bottom, rgba(10, 22, 40, 0.95) 0%, rgba(10, 22, 40, 0.85) 100%),
+            url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1920&q=80')
+          `,
         }}
-      >
-        <div className="text-lg font-semibold tracking-widest text-cyan-400">
-          ANNAFI
-        </div>
-
-        <div className="flex gap-10 text-xs tracking-widest text-slate-400">
-          <button onClick={scrollToWork} className="hover:text-cyan-400 transition">
-            OPERATIONS
-          </button>
-          <button onClick={scrollToAbout} className="hover:text-cyan-400 transition">
-            ABOUT
-          </button>
-          <button onClick={scrollToContact} className="hover:text-cyan-400 transition">
-            CONTACT
-          </button>
-        </div>
-
-        <div className="hidden md:flex items-center gap-5 text-slate-400">
-          <a href="https://github.com/DevAnnafi" target="_blank" className="hover:text-cyan-400 transition">
-            <Github size={18} />
-          </a>
-          <a href="https://www.linkedin.com/in/annafi-islam" target="_blank" className="hover:text-cyan-400 transition">
-            <Linkedin size={18} />
-          </a>
-          <a href="https://www.instagram.com/axnnafi" target="_blank" className="hover:text-cyan-400 transition">
-            <Instagram size={18} />
-          </a>
-        </div>
-
-        <button
-          onClick={scrollToContact}
-          className="border border-cyan-500 px-5 py-2 text-xs tracking-widest hover:bg-cyan-500 hover:text-black transition"
-        >
-          OPEN CHANNEL
-        </button>
-      </motion.nav>
-
-      {/* HERO */}
-      <section className="min-h-screen flex items-center justify-center px-8 relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-center max-w-6xl"
-        >
-          <motion.p variants={itemVariants} className="text-cyan-400 tracking-widest text-sm mb-4">
-            SOFTWARE DEVELOPER
-          </motion.p>
-
-          <TypingLine />
-
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-tight">
-            <BallisticText text="BUILDING SOFTWARE" />
-            <br />
-            <BallisticText text="FOR REAL-WORLD APPS" />
-          </h1>
-
-          <motion.p variants={itemVariants} className="text-slate-400 max-w-3xl mx-auto mb-12">
-          I build and maintain scalable, resilient applications with clean architecture and production-grade reliability.
-          </motion.p>
-
-          <motion.button
-            variants={itemVariants}
-            onClick={scrollToWork}
-            className="px-8 py-4 bg-cyan-500 text-black font-semibold tracking-widest inline-flex items-center gap-3"
-            whileHover={{ scale: 1.05 }}
-          >
-            VIEW OPERATIONS <ChevronDown />
-          </motion.button>
-        </motion.div>
-      </section>
-
-      {/* ABOUT */}
-      <section id="about" className="py-32 px-8 relative z-10">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      />
       
-      {/* LEFT — TEXT */}
-      <div>
-        <p className="text-cyan-400 text-xs tracking-widest mb-4">
-          PERSONNEL FILE
-        </p>
+      {/* Grid overlay */}
+      <div className="absolute inset-0 opacity-5" style={{
+        backgroundImage: 'linear-gradient(rgba(79, 209, 217, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(79, 209, 217, 0.3) 1px, transparent 1px)',
+        backgroundSize: '50px 50px'
+      }} />
 
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-          <HudHighlight>About the Operator</HudHighlight>
-        </h2>
-
-
-        <p className="text-slate-400 leading-relaxed mb-6">
-          I’m a software engineer with a strong focus on security, systems design,
-          and reliability under real-world constraints. I approach engineering the
-          same way mission-critical systems are built — with clarity, discipline,
-          and intent.
-        </p>
-
-        <p className="text-slate-400 leading-relaxed mb-8">
-          My work spans full-stack development, AI/ML , and data-driven
-          systems. I prioritize clean architecture, measurable impact, and designs
-          that hold up under pressure — not just in ideal conditions.
-        </p>
-
-        {/* STATS */}
-        <div className="grid grid-cols-2 gap-6 text-sm">
-          <div className="border border-zinc-800 p-4">
-            <p className="text-cyan-400 tracking-widest text-xs mb-1">
-              SPECIALIZATION
-            </p>
-            <p className="text-slate-200">
-              Full Stack Development
-            </p>
-          </div>
-
-          <div className="border border-zinc-800 p-4">
-            <p className="text-cyan-400 tracking-widest text-xs mb-1">
-              FOCUS AREAS
-            </p>
-            <p className="text-slate-200">
-              Full Stack · AI/ML
-            </p>
-          </div>
-
-          <div className="border border-zinc-800 p-4">
-            <p className="text-cyan-400 tracking-widest text-xs mb-1">
-              STACK
-            </p>
-            <p className="text-slate-200">
-              React · TypeScript · Python
-            </p>
-          </div>
-
-          <div className="border border-zinc-800 p-4">
-            <p className="text-cyan-400 tracking-widest text-xs mb-1">
-              STATUS
-            </p>
-            <p className="text-green-400">
-              ACTIVE · AVAILABLE
-            </p>
-          </div>
-        </div>
+      {/* Stars */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+            initial={{ 
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
+              opacity: 0 
+            }}
+            animate={{ 
+              opacity: [0, 0.8, 0],
+              scale: [0, 1, 0]
+            }}
+            transition={{
+              duration: Math.random() * 3 + 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
       </div>
 
-    {/* RIGHT — VISUAL / HUD BLOCK */}
-    <div className="border border-zinc-800 bg-black p-8 relative">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-
-      <p className="text-xs tracking-widest text-cyan-400 mb-4">
-        SYSTEM PROFILE
-      </p>
-
-      <ul className="space-y-4 text-sm text-slate-400">
-        <li className="flex justify-between">
-          <span>Full-Stack Application Design</span>
-          <span className="text-slate-200">✓</span>
-        </li>
-        <li className="flex justify-between">
-          <span>Scalable Backend Systems</span>
-          <span className="text-slate-200">✓</span>
-        </li>
-        <li className="flex justify-between">
-          <span>AI/ML Model Integration</span>
-          <span className="text-slate-200">✓</span>
-        </li>
-        <li className="flex justify-between">
-          <span>Data Pipelines & Feature Engineering</span>
-          <span className="text-slate-200">✓</span>
-        </li>
-        <li className="flex justify-between">
-          <span>Performance & Inference Optimization</span>
-          <span className="text-slate-200">✓</span>
-        </li>
-      </ul>
-
-
-      <div className="mt-8 pt-4 border-t border-zinc-800 text-xs tracking-widest text-slate-500">
-        PROFILE INTEGRITY: VERIFIED
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-      {/* WORK */}
-      <section id="work" ref={workRef} className="py-24 px-8 relative z-10">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
-          {projects.map((p) => (
-            <motion.a
-            key={p.title}
-            href={p.link}
-            target="_blank"
-            whileHover={{ y: -6 }}
-            className="
-              relative
-              rounded-lg
-              p-[2px]
-              overflow-hidden
-            "
+      {/* Header */}
+      <div className="relative z-10 pt-8 px-8 md:px-16 lg:px-24">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          <h1 
+            className="text-5xl md:text-7xl font-light tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-300/50 mb-2"
+            style={{ 
+              textShadow: '0 0 60px rgba(79, 209, 217, 0.3)',
+              fontFamily: "'Inter', sans-serif"
+            }}
           >
-            {/* ANIMATED HALO BORDER */}
-            <div
-              className="
-                absolute
-                inset-0
-                rounded-lg
-                animate-[haloBorder_10s_linear_infinite]
-                [background:conic-gradient(from_var(--angle),#38bdf8,#fbbf24,#38bdf8)]
-              "
-            />
+            ANNAFI ISLAM
+          </h1>
+          <p className="text-cyan-400 text-sm tracking-[0.3em] uppercase">Software Developer</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="text-center mt-8 mb-12"
+        >
+          <p className="text-gray-400 text-sm tracking-wider uppercase">Mission Roadmap</p>
+          <p className="text-gray-500 text-xs mt-2">Navigate through the objectives</p>
+        </motion.div>
+      </div>
+
+      {/* Roadmap SVG Path */}
+      <div className="relative z-10 h-[70vh] px-8">
+        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          {/* Glowing path trail */}
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.8" />
+            </linearGradient>
+          </defs>
           
-            {/* CARD BODY */}
-            <div className="relative z-10 rounded-lg bg-zinc-900 overflow-hidden">
-              {/* IMAGE */}
-              <div className="relative h-64 w-full overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="absolute inset-0 h-full w-full object-cover"
+          {/* Background path */}
+          <motion.path
+            d={pathData}
+            fill="none"
+            stroke="url(#pathGradient)"
+            strokeWidth="0.3"
+            strokeDasharray="2,2"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+          />
+          
+          {/* Animated glowing path */}
+          <motion.path
+            d={pathData}
+            fill="none"
+            stroke="#06b6d4"
+            strokeWidth="0.15"
+            filter="url(#glow)"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2, ease: "easeInOut", delay: 0.3 }}
+          />
+        </svg>
+
+        {/* Checkpoint Stations */}
+        {menuItems.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 + index * 0.2, duration: 0.5, type: "spring" }}
+              style={{
+                position: 'absolute',
+                left: `${item.position.x}%`,
+                top: `${item.position.y}%`,
+                transform: 'translate(-50%, -50%)'
+              }}
+              onMouseEnter={() => {
+                setHoveredIndex(index);
+                setPlayerPosition(index);
+              }}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="group"
+            >
+              <Link
+                href={item.page}
+                className="relative block"
+              >
+                {/* Outer ring pulse */}
+                <motion.div
+                  className="absolute inset-0 -m-4 rounded-full border-2 border-cyan-400"
+                  animate={{
+                    scale: hoveredIndex === index ? [1, 1.5, 1] : 1,
+                    opacity: hoveredIndex === index ? [0.5, 0, 0.5] : 0
+                  }}
+                  transition={{ duration: 2, repeat: hoveredIndex === index ? Infinity : 0 }}
                 />
 
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              </div>
-
-              {/* CONTENT */}
-              <div className="p-6">
-                <p className="text-xs tracking-widest text-cyan-400 mb-2">
-                  {p.category}
-                </p>
-                <h3 className="text-xl font-semibold">
-                  {p.title}
-                </h3>
-                <p className="text-slate-400 text-sm mt-3">
-                  {p.description}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.techStack?.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs tracking-widest px-2 py-1 border border-cyan-400/30 text-cyan-300/80 rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                {/* Station node */}
+                <div className={`relative w-16 h-16 rounded-full bg-gradient-to-br ${
+                  hoveredIndex === index 
+                    ? 'from-cyan-400 to-cyan-600 scale-110' 
+                    : 'from-cyan-600/50 to-cyan-800/50'
+                } border-2 border-cyan-400/30 flex items-center justify-center transition-all duration-300 backdrop-blur-sm`}>
+                  <Icon className="w-7 h-7 text-white" />
+                  
+                  {/* Active indicator */}
+                  {playerPosition === index && (
+                    <motion.div
+                      className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-[#0a1628]"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                    />
+                  )}
                 </div>
-                
-              </div>
+
+                {/* Station label */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ 
+                    opacity: hoveredIndex === index ? 1 : 0.7,
+                    y: hoveredIndex === index ? 0 : 10,
+                    scale: hoveredIndex === index ? 1.05 : 1
+                  }}
+                  className="absolute top-full mt-3 left-1/2 -translate-x-1/2 whitespace-nowrap"
+                >
+                  <div className="bg-gradient-to-br from-cyan-950/90 to-cyan-900/90 backdrop-blur-md border border-cyan-400/30 rounded px-4 py-2 text-center">
+                    <p className="text-cyan-400 text-xs tracking-[0.2em] uppercase font-medium">
+                      {item.label}
+                    </p>
+                    {hoveredIndex === index && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="text-gray-400 text-xs mt-1"
+                      >
+                        {item.description}
+                      </motion.p>
+                    )}
+                  </div>
+                </motion.div>
+
+                {/* Connection indicator to next station */}
+                {index < menuItems.length - 1 && (
+                  <motion.div
+                    className="absolute left-full top-1/2 w-8 h-px bg-gradient-to-r from-cyan-400/50 to-transparent"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: 1 + index * 0.2, duration: 0.5 }}
+                    style={{ transformOrigin: 'left' }}
+                  />
+                )}
+              </Link>
+            </motion.div>
+          );
+        })}
+
+        {/* Player/Spartan Character */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          style={{
+            position: 'absolute',
+            left: `${menuItems[playerPosition]?.position.x}%`,
+            top: `${menuItems[playerPosition]?.position.y}%`,
+            transform: 'translate(-50%, -120%)'
+          }}
+          className="pointer-events-none"
+        >
+          <motion.div
+            animate={{
+              y: [0, -5, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="relative"
+          >
+            {/* Player indicator */}
+            <div className="w-8 h-12 bg-gradient-to-b from-cyan-300 to-cyan-500 rounded-full relative">
+              {/* Helmet */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-6 bg-cyan-200 rounded-full border-2 border-cyan-400" />
+              {/* Visor glow */}
+              <div className="absolute top-1 left-1/2 -translate-x-1/2 w-4 h-2 bg-cyan-400 rounded-full opacity-80" />
             </div>
-          </motion.a>                   
-          ))}
-        </div>
-      </section>
+            
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-cyan-400 rounded-full blur-md opacity-50 -z-10" />
+          </motion.div>
+          
+          {/* Player label */}
+          <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
+            <span className="text-cyan-400 text-xs tracking-wider uppercase bg-cyan-950/80 backdrop-blur-sm px-2 py-1 rounded border border-cyan-400/30">
+              You
+            </span>
+          </div>
+        </motion.div>
+      </div>
 
-     {/* CONTACT */}
-    <section id="contact" className="py-24 px-8 relative z-10">
-    <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      {/* Social Links */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 0.8 }}
+        className="absolute bottom-8 left-8 md:left-16 flex gap-4"
+      >
+        <a
+          href="https://github.com/DevAnnafi"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-10 h-10 rounded-full bg-cyan-950/30 border border-cyan-900/30 flex items-center justify-center hover:border-cyan-400 hover:bg-cyan-950/50 transition-all group"
+        >
+          <Github className="w-5 h-5 text-cyan-400/70 group-hover:text-cyan-400 transition-colors" />
+        </a>
+        <a
+          href="https://linkedin.com/in/annafi-islam"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-10 h-10 rounded-full bg-cyan-950/30 border border-cyan-900/30 flex items-center justify-center hover:border-cyan-400 hover:bg-cyan-950/50 transition-all group"
+        >
+          <Linkedin className="w-5 h-5 text-cyan-400/70 group-hover:text-cyan-400 transition-colors" />
+        </a>
+      </motion.div>
 
-    {/* LEFT — TEXT */}
-    <div>
-      <p className="text-cyan-400 text-xs tracking-widest mb-4">
-        OPEN CHANNEL
-      </p>
+      {/* Bottom info */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ delay: 2, duration: 0.8 }}
+        className="absolute bottom-8 right-8 md:right-16 text-right"
+      >
+        <span className="text-gray-500 text-xs tracking-[0.2em] uppercase">
+          Portfolio 2026
+        </span>
+      </motion.div>
 
-      <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-        Let’s Build Something That Holds
-      </h2>
-
-      <p className="text-slate-400 leading-relaxed mb-6">
-        Whether you’re looking to collaborate, build a system, or explore an idea,
-        I’m open to conversations that value clarity, intent, and execution.
-      </p>
-
-      <p className="text-slate-400 leading-relaxed">
-        Reach out with a project, question, or opportunity — and let’s see where it
-        leads.
-      </p>
-    </div>
-
-    {/* RIGHT — FORM */}
-    <form
-      action="https://formspree.io/f/myzroeyr"
-      method="POST"
-      className="bg-zinc-900 border border-zinc-800 p-8 space-y-6"
-    >
-      <input
-        name="name"
-        placeholder="NAME"
-        className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
-        required
+      {/* Vignette */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10, 22, 40, 0.8) 100%)'
+        }}
       />
-      <input
-        type="email"
-        name="email"
-        placeholder="EMAIL"
-        className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
-        required
-      />
-      <textarea
-        name="message"
-        rows={5}
-        placeholder="MESSAGE"
-        className="w-full p-3 bg-black border border-zinc-700 text-sm tracking-widest"
-        required
-      />
-      <button className="w-full py-3 bg-cyan-500 text-black font-semibold tracking-widest">
-        TRANSMIT
-      </button>
-    </form>
-
-  </div>
-</section>
-
-
-      <footer className="border-t border-zinc-800 py-6 text-center text-xs tracking-widest text-slate-500">
-        SYSTEM STATUS: OPERATIONAL · © 2025 ANNAFI
-      </footer>
     </div>
   );
 }
