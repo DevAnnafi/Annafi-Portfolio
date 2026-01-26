@@ -267,25 +267,27 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 0.8 }}
-        className="absolute bottom-8 left-8 md:left-16 flex gap-4"
+        className="absolute bottom-8 left-8 md:left-16 flex gap-4 z-[999] pointer-events-auto"
       >
-        <button
-          type="button"
+        <a
+          href="https://github.com/DevAnnafi"
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="Open GitHub"
-          onClick={() => window.open("https://github.com/DevAnnafi", "_blank", "noopener,noreferrer")}
           className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-950/50 to-cyan-900/50 border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300 group"
         >
           <Github className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300" />
-        </button>
+        </a>
 
-        <button
-          type="button"
+        <a
+          href="https://www.linkedin.com/in/annafi-islam"
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="Open LinkedIn"
-          onClick={() => window.open("https://linkedin.com/in/annafi-islam", "_blank", "noopener,noreferrer")}
           className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-950/50 to-cyan-900/50 border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300 group"
         >
           <Linkedin className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300" />
-        </button>
+        </a>
       </motion.div>
 
 
