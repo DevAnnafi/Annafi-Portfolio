@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { User, Target, Cpu, Mail, Github, Linkedin } from 'lucide-react';
 
 const menuItems = [
-  { label: 'ABOUT ME', page: '/about', description: 'Learn more about who I am', icon: User, position: { x: 15, y: 20 } },
-  { label: 'PROJECTS', page: '/projects', description: 'View my work and creations', icon: Target, position: { x: 35, y: 40 } },
-  { label: 'SKILLS', page: '/skills', description: 'Technologies I work with', icon: Cpu, position: { x: 60, y: 35 } },
-  { label: 'CONTACT', page: '/contact', description: 'Get in touch with me', icon: Mail, position: { x: 85, y: 60 } },
+  { label: 'ABOUT ME', page: 'about', description: 'Learn more about who I am', icon: User, position: { x: 15, y: 18 } },
+  { label: 'PROJECTS', page: 'projects', description: 'View my work and creations', icon: Target, position: { x: 34, y: 37 } },
+  { label: 'SKILLS', page: 'skills', description: 'Technologies I work with', icon: Cpu, position: { x: 58, y: 32 } },
+  { label: 'CONTACT', page: 'contact', description: 'Get in touch with me', icon: Mail, position: { x: 84, y: 57 } },
 ];
 
 export default function Home() {
@@ -92,10 +92,9 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Roadmap SVG Path */}
+       {/* Roadmap SVG Path */}
       <div className="relative z-10 h-[70vh] px-8">
         <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          {/* Glowing path trail */}
           <defs>
             <filter id="glow">
               <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
@@ -110,7 +109,6 @@ export default function Home() {
             </linearGradient>
           </defs>
           
-          {/* Background path */}
           <motion.path
             d={pathData}
             fill="none"
@@ -122,7 +120,6 @@ export default function Home() {
             transition={{ duration: 2, ease: "easeInOut" }}
           />
           
-          {/* Animated glowing path */}
           <motion.path
             d={pathData}
             fill="none"
@@ -158,10 +155,9 @@ export default function Home() {
               className="group"
             >
               <Link
-                href={item.page}
-                className="relative block"
+                href={`/${item.page}`}
+                className="relative block pointer-events-auto"
               >
-                {/* Outer ring pulse */}
                 <motion.div
                   className="absolute inset-0 -m-4 rounded-full border-2 border-cyan-400"
                   animate={{
@@ -171,7 +167,6 @@ export default function Home() {
                   transition={{ duration: 2, repeat: hoveredIndex === index ? Infinity : 0 }}
                 />
 
-                {/* Station node */}
                 <div className={`relative w-16 h-16 rounded-full bg-gradient-to-br ${
                   hoveredIndex === index 
                     ? 'from-cyan-400 to-cyan-600 scale-110' 
@@ -179,7 +174,6 @@ export default function Home() {
                 } border-2 border-cyan-400/30 flex items-center justify-center transition-all duration-300 backdrop-blur-sm`}>
                   <Icon className="w-7 h-7 text-white" />
                   
-                  {/* Active indicator */}
                   {playerPosition === index && (
                     <motion.div
                       className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-[#0a1628]"
@@ -189,7 +183,6 @@ export default function Home() {
                   )}
                 </div>
 
-                {/* Station label */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ 
@@ -215,7 +208,6 @@ export default function Home() {
                   </div>
                 </motion.div>
 
-                {/* Connection indicator to next station */}
                 {index < menuItems.length - 1 && (
                   <motion.div
                     className="absolute left-full top-1/2 w-8 h-px bg-gradient-to-r from-cyan-400/50 to-transparent"
@@ -230,7 +222,7 @@ export default function Home() {
           );
         })}
 
-        {/* Player/Spartan Character */}
+        {/* Player Character */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -254,19 +246,14 @@ export default function Home() {
             }}
             className="relative"
           >
-            {/* Player indicator */}
             <div className="w-8 h-12 bg-gradient-to-b from-cyan-300 to-cyan-500 rounded-full relative">
-              {/* Helmet */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-6 bg-cyan-200 rounded-full border-2 border-cyan-400" />
-              {/* Visor glow */}
               <div className="absolute top-1 left-1/2 -translate-x-1/2 w-4 h-2 bg-cyan-400 rounded-full opacity-80" />
             </div>
             
-            {/* Glow effect */}
             <div className="absolute inset-0 bg-cyan-400 rounded-full blur-md opacity-50 -z-10" />
           </motion.div>
           
-          {/* Player label */}
           <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
             <span className="text-cyan-400 text-xs tracking-wider uppercase bg-cyan-950/80 backdrop-blur-sm px-2 py-1 rounded border border-cyan-400/30">
               You
@@ -286,21 +273,20 @@ export default function Home() {
           href="https://github.com/DevAnnafi"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 rounded-full bg-cyan-950/30 border border-cyan-900/30 flex items-center justify-center hover:border-cyan-400 hover:bg-cyan-950/50 transition-all group"
+          className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-950/50 to-cyan-900/50 border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300 group"
         >
-          <Github className="w-5 h-5 text-cyan-400/70 group-hover:text-cyan-400 transition-colors" />
+          <Github className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300" />
         </a>
         <a
           href="https://linkedin.com/in/annafi-islam"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 rounded-full bg-cyan-950/30 border border-cyan-900/30 flex items-center justify-center hover:border-cyan-400 hover:bg-cyan-950/50 transition-all group"
+          className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-950/50 to-cyan-900/50 border border-cyan-400/30 flex items-center justify-center hover:border-cyan-400 hover:scale-110 transition-all duration-300 group"
         >
-          <Linkedin className="w-5 h-5 text-cyan-400/70 group-hover:text-cyan-400 transition-colors" />
+          <Linkedin className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300" />
         </a>
       </motion.div>
 
-      {/* Bottom info */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.5 }}
@@ -312,7 +298,6 @@ export default function Home() {
         </span>
       </motion.div>
 
-      {/* Vignette */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
