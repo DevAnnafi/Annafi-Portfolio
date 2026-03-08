@@ -61,10 +61,20 @@ const projects = [
     link: 'https://graph-runner-web.vercel.app/',
     github: 'https://graph-runner-web.vercel.app/',
     categoryColor: 'from-indigo-500 to-violet-500'
+  },
+  {
+    name: "CloudSecure",
+    category: "Security & Full-Stack",
+    description: "CloudSecure is a comprehensive security scanning platform that identifies misconfigurations and vulnerabilities across AWS, Azure, and Google Cloud Platform. Built for security teams, DevOps engineers, and compliance auditors.",
+    tech: ['Python', 'FastAPI, SQLALCHEMY & PostgreSQL', 'Next.js', 'Typescript', 'TailwindCSS'],
+    image: 'images/CloudSecure.png',
+    link: 'https://cloud-secure-gj7wdas8w-devannafis-projects.vercel.app/',
+    github: 'https://github.com/DevAnnafi/CloudSecure',
+    categoryColor: 'from-yellow-500 to-amber-500'
   }
 ];
 
-const categories = ['ALL', 'SYSTEMS', 'INTELLIGENCE', 'SECURITY', 'INFRASTRUCTURE', 'GRC', 'GAMES'];
+const categories = ['ALL', 'SYSTEMS', 'INTELLIGENCE', 'SECURITY', 'INFRASTRUCTURE', 'GRC', 'GAMES', 'Security & Full-Stack'];
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
