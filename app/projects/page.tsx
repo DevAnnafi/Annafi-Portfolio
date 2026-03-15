@@ -84,7 +84,7 @@ const projects = [
   }
 ];
 
-const categories = ['ALL', 'SYSTEMS', 'INTELLIGENCE', 'SECURITY', 'INFRASTRUCTURE', 'GRC', 'GAMES', 'Security & Full-Stack'];
+const categories = ['ALL', 'SYSTEMS', 'INTELLIGENCE', 'SECURITY', 'INFRASTRUCTURE', 'GRC', 'GAMES', 'Security & Full-Stack', 'Finance'];
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
