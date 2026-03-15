@@ -72,6 +72,16 @@ const projects = [
     github: 'https://github.com/DevAnnafi/CloudSecure',
     categoryColor: 'from-yellow-500 to-amber-500'
   }
+  {
+    name: "FiscalCore",
+    category: "Finance",
+    description: "FiscalCore is a full-stack financial modeling platform that simulates U.S. tax liability and enables scenario-based planning.",
+    tech: ['Python', 'FastAPI', 'PostgreSQL', 'Pytest', 'Next.js', 'Typescript', 'Tailwind CSS', 'Recharts'],
+    image: 'images/FiscalCore.png',
+    link: 'https://fiscalcore.net/',
+    github: 'https://github.com/DevAnnafi/FiscalCore',
+    categoryColor: 'from-yellow-500 to-amber-500'
+  }
 ];
 
 const categories = ['ALL', 'SYSTEMS', 'INTELLIGENCE', 'SECURITY', 'INFRASTRUCTURE', 'GRC', 'GAMES', 'Security & Full-Stack'];
