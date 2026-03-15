@@ -71,7 +71,7 @@ const projects = [
     link: 'https://cloud-secure-gj7wdas8w-devannafis-projects.vercel.app/',
     github: 'https://github.com/DevAnnafi/CloudSecure',
     categoryColor: 'from-yellow-500 to-amber-500'
-  }
+  },
   {
     name: "FiscalCore",
     category: "Finance",
